@@ -5,6 +5,7 @@
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/butlerx/invbeertory/graphs/commit-activity)
 [![License: MIT](https://img.shields.io/github/license/butlerx/invbeertory)](https://github.com/butlerx/invbeertory/blob/master/LICENSE)
 [![Twitter: cianbutlerx](https://img.shields.io/twitter/follow/cianbutlerx.svg?style=social)](https://twitter.com/cianbutlerx)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b8e09816-1468-4e09-854c-cdbd0fb7107d/deploy-status)](https://app.netlify.com/sites/affectionate-snyder-2e9cae/deploys)
 
 > Simple beer inventory displaty
 
@@ -26,8 +27,14 @@ CLIENT_EMAIL=<SERVICE_ACCOUNT_EMAIL>
 PRIVATE_KEY=<YOUR_PRIVATE_KEY>
 ```
 
-You can get the `SPREADSHEET_ID` from the URL of your sheet, `https://docs.google.com/spreadsheets/d/<SPREADSHEET_ID>/edit#gid=12345`.
-You will have to create a service account which will provide you with the service account email id and a private key. To know more about creating service account you can visit [here](https://support.google.com/a/answer/7378726?hl=en) and read [this](https://www.twilio.com/blog/2017/03/google-spreadsheets-and-javascriptnode-js.html). After creating a service account share your sheet with edit permission with the given email id.
+You can get the `SPREADSHEET_ID` from the URL of your sheet,
+`https://docs.google.com/spreadsheets/d/<SPREADSHEET_ID>/edit#gid=12345`. You
+will have to create a service account which will provide you with the service
+account email id and a private key. To know more about creating service account
+you can visit [here](https://support.google.com/a/answer/7378726?hl=en) and read
+[this](https://www.twilio.com/blog/2017/03/google-spreadsheets-and-javascriptnode-js.html).
+After creating a service account share your sheet with edit permission with the
+given email id.
 
 ```sh
 yarn build
@@ -53,10 +60,13 @@ Give a ⭐️ if this project helped you!
 
 ## 📝 License
 
-Copyright © 2019 [Cian Butler <butlerx@notthe.cloud>](https://github.com/butlerx).
+Copyright © 2019
+[Cian Butler <butlerx@notthe.cloud>](https://github.com/butlerx).
 
-This project is [MIT](https://github.com/butlerx/invbeertory/blob/master/LICENSE) licensed.
+This project is
+[MIT](https://github.com/butlerx/invbeertory/blob/master/LICENSE) licensed.
 
 ---
 
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
+_This README was generated with ❤️ by
+[readme-md-generator](https://github.com/kefranabg/readme-md-generator)_

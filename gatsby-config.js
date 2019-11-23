@@ -4,11 +4,9 @@ require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
-const { client_email, private_key } = require(`./${process.eve.SERVICEACCOUNT}.json`);
-
 module.exports = {
   siteMetadata: {
-    title: package.name,
+    title: name,
     description,
     author,
   },
@@ -41,8 +39,8 @@ module.exports = {
       options: {
         spreadsheetId: process.env.SPREADSHEET_ID,
         credentials: {
-          client_email,
-          private_key,
+          client_email: process.env.CLIENT_EMAIL,
+          private_key: process.env.PRIVATE_KEY,
         },
       },
     },
