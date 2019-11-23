@@ -19,7 +19,7 @@ interface Props {
             drunk: boolean;
             stock: number;
           };
-        }
+        },
       ];
     };
   };
