@@ -1,0 +1,42 @@
+{
+  "name": "invbeertory",
+  "description": "Simple beer inventory displaty",
+  "version": "0.1.0",
+  "author": "Cian Butler <butlerx@notthe.cloud>",
+  "dependencies": {
+    "gatsby": "^2.5.7",
+    "gatsby-image": "^2.1.0",
+    "gatsby-plugin-manifest": "^2.1.1",
+    "gatsby-plugin-offline": "^2.1.1",
+    "gatsby-plugin-react-helmet": "^3.0.12",
+    "gatsby-plugin-sharp": "^2.0.37",
+    "gatsby-source-filesystem": "^2.0.37",
+    "gatsby-source-google-spreadsheet": "^1.2.0",
+    "gatsby-transformer-sharp": "^2.1.19",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-helmet": "^5.2.1"
+  },
+  "devDependencies": {
+    "prettier": "^1.17.1"
+  },
+  "keywords": [
+    "gatsby",
+    "beer"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write src/**/*.{js,jsx}",
+    "start": "gatsby serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/butlerx/invbeertory"
+  },
+  "bugs": {
+    "url": "https://github.com/butlerx/invbeertory/issues"
+  }
+}
