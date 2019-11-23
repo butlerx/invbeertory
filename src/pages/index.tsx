@@ -5,10 +5,9 @@ import { Layout, SEO, Table } from '../components';
 
 interface Props {
   data: {
-    allGoogleSpreadsheetSheet1: {
-      edges: [
+    allGoogleSpreadsheetBeerInv: {
+      nodes: [
         {
-          node: {
             name: string;
             brewery: string;
             year: number;
@@ -18,7 +17,6 @@ interface Props {
             rating: number;
             drunk: boolean;
             stock: number;
-          };
         },
       ];
     };
@@ -30,7 +28,7 @@ const IndePage: SFC<Props> = ({ data }) => (
     <SEO title="Home" />
     <Table
       headings={['name', 'brewery', 'year', 'abv', 'style', 'size', 'rating', 'drunk', 'stock']}
-      data={data.allGoogleSpreadsheetSheet1.edges.map(({ node }) => node)}
+      data={data.allGoogleSpreadsheetBeerInv.nodes}
     />
     <Link to="/page-2/">Go to page 2</Link>
   </Layout>
@@ -38,9 +36,8 @@ const IndePage: SFC<Props> = ({ data }) => (
 
 export const query = graphql`
   query {
-    allGoogleSpreadsheetSheet1 {
-      edges {
-        node {
+    allGoogleSpreadsheetBeerInv {
+      nodes {
           name
           brewery
           year
@@ -50,7 +47,6 @@ export const query = graphql`
           rating
           drunk
           stock
-        }
       }
     }
   }
