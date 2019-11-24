@@ -13,17 +13,18 @@ interface Props {
   };
 }
 
-const IndexPage: SFC<Props> = ({ data }) => (
+const IndexPage: SFC<Props> = ({
+  data: {
+    allGoogleSpreadsheetBeerInv: { nodes },
+  },
+}) => (
   <Layout>
     <SEO title="Brewery Stats" />
     <Card>
-      <Pie
-        title="Beers by Brewery"
-        data={purchasesByBrewery(data.allGoogleSpreadsheetBeerInv.nodes)}
-      />
+      <Pie title="Beers by Brewery" data={purchasesByBrewery(nodes)} />
     </Card>
     <Card>
-      <Bar title="ABV in stock" data={stockByAbv(data.allGoogleSpreadsheetBeerInv.nodes)} />
+      <Bar title="ABV in stock" data={stockByAbv(nodes)} />
     </Card>
   </Layout>
 );

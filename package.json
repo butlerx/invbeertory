@@ -14,8 +14,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
-    "react-table": "^6.10.3",
-    "react-table-hoc-draggable-columns": "^1.2.1"
+    "react-table": "^6.10.3"
   },
   "devDependencies": {
     "@types/react": "^16.8.17",
