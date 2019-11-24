@@ -1,10 +1,10 @@
-import { Link } from 'gatsby';
 import React, { SFC } from 'react';
+import { Link } from 'gatsby';
 import { Layout, SEO } from '../components';
 
 interface ErrorProps {}
 
-const error: SFC<ErrorProps> = props => {
+const error: SFC<ErrorProps> = props => (
   <Layout>
     <SEO title="404: Not found" />
     <h1>404 Not Found</h1>
@@ -12,7 +12,7 @@ const error: SFC<ErrorProps> = props => {
     <p>
       Please head back <Link to="/">home</Link>.
     </p>
-  </Layout>;
-};
+  </Layout>
+);
 
 export default error;

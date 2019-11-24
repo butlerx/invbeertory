@@ -22,8 +22,10 @@ yarn
 Before building you will need to add credentials to the `.env` file.
 
 ```sh
+PROJECT_ID=<YOUR_PROJECT_ID>
 SPREADSHEET_ID=<YOUR_SPREADHEET_ID>
 CLIENT_EMAIL=<SERVICE_ACCOUNT_EMAIL>
+PRIVATE_KEY_ID=<YOUR_PRIVATE_KEY_ID>
 PRIVATE_KEY=<YOUR_PRIVATE_KEY>
 ```
 
