@@ -1,5 +1,6 @@
 import { purchasesBy, stockBy } from './occurences';
 
+export * from './sort';
 export * from './colours';
 export * from './dates';
 export * from './filters';
