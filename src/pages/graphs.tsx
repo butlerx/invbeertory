@@ -1,9 +1,9 @@
 import React, { SFC } from 'react';
 import { Link, graphql } from 'gatsby';
 
-import { Layout, SEO, Pie } from '../components';
+import { Layout, SEO, Pie, Bar, Card } from '../components';
 import { Beer } from '../types';
-import { purchasesByBrewery } from '../utils';
+import { purchasesByBrewery, purchasesByStyle, stockByAbv } from '../utils';
 
 interface Props {
   data: {
@@ -16,11 +16,15 @@ interface Props {
 const IndexPage: SFC<Props> = ({ data }) => (
   <Layout>
     <SEO title="Brewery Stats" />
-    <Pie
-      title="Beers by Brewery"
-      data={purchasesByBrewery(data.allGoogleSpreadsheetBeerInv.nodes)}
-    />
-    <Link to="/">Go Home</Link>
+    <Card>
+      <Pie
+        title="Beers by Brewery"
+        data={purchasesByBrewery(data.allGoogleSpreadsheetBeerInv.nodes)}
+      />
+    </Card>
+    <Card>
+      <Bar title="ABV in stock" data={stockByAbv(data.allGoogleSpreadsheetBeerInv.nodes)} />
+    </Card>
   </Layout>
 );
 
@@ -29,6 +33,9 @@ export const query = graphql`
     allGoogleSpreadsheetBeerInv {
       nodes {
         brewery
+        abv
+        style
+        stock
         purchased
       }
     }

@@ -1,11 +1,11 @@
 import React, { FunctionComponent, useRef, useState, useEffect } from 'react';
 import xkcd from 'chart.xkcd';
-import { colours as dataColors } from '../utils';
+import { colours as dataColors } from '../../utils';
 
 interface Props {
   data: { [string]: number };
-  title: string;
-  config?: { [string]: any };
+  title?: string;
+  config?: object;
 }
 
 export const Pie: FunctionComponent<Props> = ({ title, data, config }) => {
@@ -31,5 +31,14 @@ export const Pie: FunctionComponent<Props> = ({ title, data, config }) => {
     }
   });
 
-  return <svg ref={ref} />;
+  return (
+    <div style={{ width: '100%', height: 'auto' }}>
+      <svg ref={ref} />
+    </div>
+  );
+};
+
+Pie.defaultProps = {
+  title: '',
+  config: {},
 };

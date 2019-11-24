@@ -16,7 +16,6 @@ const IndexPage: SFC<Props> = ({ data }) => (
   <Layout>
     <SEO title="Home" />
     <BeerTable beers={data.allGoogleSpreadsheetBeerInv.nodes} />
-    <Link to="/brewery/">Go to Brewery Stats</Link>
   </Layout>
 );
 

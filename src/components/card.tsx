@@ -1,12 +1,10 @@
 import React, { SFC } from 'react';
 
 interface Props {
-  title: string;
-  date: Date;
-  content: string;
+  title?: string;
 }
 
-export const Card: SFC<Props> = ({ title, content, date }) => (
+export const Card: SFC<Props> = ({ title, children }) => (
   <div
     style={{
       border: '1px solid #eaeaea',
@@ -16,8 +14,14 @@ export const Card: SFC<Props> = ({ title, content, date }) => (
       borderRadius: '10px',
     }}
   >
-    <h1>{title}</h1>
-    <p style={{ color: 'grey' }}>{date}</p>
-    <p>{content}</p>
+    {title !== undefined ? (
+      <>
+        <h1 style={{ paddingLeft: '1em', paddingTop: '.5em' }}>{title}</h1>
+        <hr />
+      </>
+    ) : (
+      ''
+    )}
+    {children}
   </div>
 );

@@ -46,16 +46,34 @@ export const BeerTable: FunctionComponent<Props> = ({ beers }) => (
     columns={[
       { Header: 'Name', accessor: 'name' },
       { Header: 'Brewery', accessor: 'brewery' },
-      { Header: 'Year', accessor: 'year', minWidth: 20 },
-      { Header: 'ABV', accessor: 'abv', minWidth: 20 },
+      { Header: 'Year', accessor: 'year', minWidth: 10 },
+      {
+        Header: 'ABV',
+        accessor: 'abv',
+        minWidth: 10,
+        Cell: row => <>{row.row.size}%</>,
+      },
       { Header: 'Style', accessor: 'style' },
       {
         Header: 'Size',
         accessor: 'size',
-        minWidth: 20,
+        minWidth: 10,
         Cell: row => <>{row.row.size} ml</>,
       },
-      { Header: 'Current Stock', accessor: 'stock', minWidth: 20 },
+      {
+        Header: 'Current Stock',
+        accessor: 'stock',
+        minWidth: 15,
+        Cell: row => (
+          <div
+            style={{
+              textAlign: 'right',
+            }}
+          >
+            {row.row.stock}
+          </div>
+        ),
+      },
     ]}
   />
 );

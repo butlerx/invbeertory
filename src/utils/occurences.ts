@@ -1,13 +1,14 @@
 import { Beer } from '../types';
 
-export function purchasesByBrewery(beers: Beer[]): { [string]: number } {
+const fieldByField = (fieldA: string) => (fieldB: string) => (
+  beers: Beer[],
+): { [string]: number } => {
   const res = {};
   beers.forEach(beer => {
-    if (beer.brewery in res) {
-      res[beer.brewery] += parseInt(beer.purchased, 10);
-    } else {
-      res[beer.brewery] = parseInt(beer.purchased, 10);
-    }
+    res[beer[fieldB]] = parseInt(beer[fieldA], 10) + (beer[fieldB] in res ? res[beer[fieldB]] : 0);
   });
   return res;
-}
+};
+
+export const purchasesBy = fieldByField('purchased');
+export const stockBy = fieldByField('stock');

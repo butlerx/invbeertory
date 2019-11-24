@@ -1,6 +1,7 @@
 import React, { SFC } from 'react';
 import PropTypes from 'prop-types';
 import { StaticQuery, graphql } from 'gatsby';
+import { getMonth } from '../utils';
 
 import { Header } from './header';
 import './layout.css';
@@ -30,10 +31,16 @@ export const Layout: SFC<Props> = ({ children }) => (
           }}
         >
           <main>{children}</main>
-          <footer>
-            © {new Date().getFullYear()}, Built with
-            {` `}
-            <a href="https://www.gatsbyjs.org">Gatsby</a>
+          <footer
+            style={{
+              alignItems: 'center',
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'center',
+              padding: '1em',
+            }}
+          >
+            Built on {getMonth(new Date().getMonth())}, {new Date().getFullYear()}
           </footer>
         </div>
       </>
