@@ -39,10 +39,21 @@ export const Header: SFC<Props> = ({ siteTitle }) => (
       />
       <div style={{ margin: 0, paddingTop: '1em' }}>
         <Link
+          to="/history/"
+          style={{
+            color: `white`,
+            textDecoration: `none`,
+            padding: '0 .5em',
+          }}
+        >
+          History
+        </Link>
+        <Link
           to="/graphs/"
           style={{
             color: `white`,
             textDecoration: `none`,
+            padding: '0 .5em',
           }}
         >
           Graphs

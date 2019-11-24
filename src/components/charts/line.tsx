@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useRef, useState, useEffect } from 'react';
+import React, { SFC, useRef, useState, useEffect } from 'react';
 import xkcd from 'chart.xkcd';
 import { colours as dataColors } from '../../utils';
 
@@ -10,7 +10,7 @@ interface Props {
   config?: object;
 }
 
-export const Line: FunctionComponent<Props> = ({ title, data, config, xLabel, yLabel }) => {
+export const Line: SFC<Props> = ({ title, data, config, xLabel, yLabel }) => {
   const ref = useRef();
   useEffect(() => {
     if (ref.current) {

@@ -19,7 +19,7 @@ const IndexPage: SFC<Props> = ({
 }) => {
   return (
     <Layout>
-      <SEO title="Inventory" />
+      <SEO title="History" />
       <BeerTable beers={nodes} />
     </Layout>
   );
@@ -27,7 +27,7 @@ const IndexPage: SFC<Props> = ({
 
 export const query = graphql`
   query {
-    allGoogleSpreadsheetBeerInv(filter: { stock: { ne: "0" } }) {
+    allGoogleSpreadsheetBeerInv {
       nodes {
         name
         brewery
