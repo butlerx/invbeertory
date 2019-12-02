@@ -1,6 +1,6 @@
 import React, { SFC, useRef, useState, useEffect } from 'react';
 import xkcd from 'chart.xkcd';
-import { colours as dataColors } from '../../utils';
+import { colours as dataColors, base } from '../../utils';
 
 interface Props {
   data: object;
@@ -21,6 +21,7 @@ export const Line: SFC<Props> = ({ title, data, config, xLabel, yLabel }) => {
         data,
         options: Object.assign(config || {}, {
           legendPosition: xkcd.config.positionType.upRight,
+          backgroundColor: base('07'),
           dataColors,
         }),
       });

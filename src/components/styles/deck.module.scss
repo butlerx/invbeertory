@@ -1,0 +1,62 @@
+@import 'variables', 'colours.module';
+
+@mixin cardLayout {
+  @include breakpointMd {
+    @include padding($left: 2rem, $right: 2rem);
+  }
+
+  background-color: base('07');
+  color: base('00');
+  padding: 1rem 8rem;
+}
+
+.deck {
+  h1 {
+    &.listTitle {
+      color: base('0a');
+      font-size: 3em;
+    }
+  }
+
+  .single {
+    @include cardLayout;
+    @include padding($bottom: 4rem, $top: 4rem);
+    margin-bottom: 4rem;
+
+    h2 {
+      &.headline {
+        color: base('0d');
+        margin-top: 0;
+
+        a {
+          color: base('0d');
+          margin-top: 0;
+        }
+      }
+    }
+
+    .meta {
+      margin-bottom: 1rem;
+
+      .key {
+        color: base('03');
+      }
+
+      .val {
+        color: base('0e');
+
+        a {
+          color: base('0e');
+        }
+      }
+    }
+
+    section {
+      &.summary {
+        a {
+          color: base('0f');
+        }
+      }
+    }
+  }
+}

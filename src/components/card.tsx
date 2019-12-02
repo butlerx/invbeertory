@@ -1,27 +1,21 @@
 import React, { SFC } from 'react';
 
+import { single, headline, body } from './styles/card.module.scss';
+
 interface Props {
   title?: string;
 }
 
 export const Card: SFC<Props> = ({ title, children }) => (
-  <div
-    style={{
-      border: '1px solid #eaeaea',
-      boxShadow: '2px 2px 5px grey',
-      padding: '10px',
-      marginBottom: '10px',
-      borderRadius: '10px',
-    }}
-  >
+  <div className={single}>
     {title !== undefined ? (
       <>
-        <h1 style={{ paddingLeft: '1em', paddingTop: '.5em' }}>{title}</h1>
-        <hr />
+        <h1 className={headline}>{title}</h1>
       </>
     ) : (
       ''
     )}
-    {children}
+
+    <section className={body}>{children}</section>
   </div>
 );

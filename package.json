@@ -1,12 +1,14 @@
 {
   "name": "invbeertory",
-  "description": "Simple beer inventory displaty",
+  "description": "Simple beer inventory display",
   "version": "0.1.0",
   "author": "Cian Butler <butlerx@notthe.cloud>",
   "dependencies": {
     "chart.xkcd": "^1.1.11",
     "gatsby": "^2.5.7",
+    "gatsby-plugin-sass": "^2.0.11",
     "gatsby-plugin-manifest": "^2.1.1",
+    "node-sass": "^4.12.0",
     "gatsby-plugin-offline": "^2.1.1",
     "gatsby-plugin-react-helmet": "^3.0.12",
     "gatsby-plugin-typescript": "^2.0.14",

@@ -1,6 +1,6 @@
 import React, { SFC, useRef, useState, useEffect } from 'react';
 import xkcd from 'chart.xkcd';
-import { colours as dataColors } from '../../utils';
+import { colours as dataColors, base } from '../../utils';
 
 interface Props {
   data: { [string]: number };
@@ -26,6 +26,7 @@ export const Pie: SFC<Props> = ({ title, data, config }) => {
           innerRadius: 0.4,
           legendPosition: xkcd.config.positionType.upRight,
           dataColors,
+          backgroundColor: base('07'),
         }),
       });
     }

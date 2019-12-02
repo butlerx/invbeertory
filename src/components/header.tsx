@@ -1,61 +1,28 @@
 import { Link } from 'gatsby';
 import React, { SFC } from 'react';
+import { container, clearfix, caret, right, path } from './styles/layout.module.scss';
 
 interface Props {
   siteTitle?: string;
 }
 
 export const Header: SFC<Props> = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-        display: 'flex',
-        flexGrow: 1,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          {siteTitle}
+  <header>
+    <div className={[container, clearfix].join(' ')}>
+      <Link to="/" className={path}>
+        {siteTitle}
+      </Link>
+      <span className={caret}>#_</span>
+      <div className={right}>
+        <Link to="/stock/" className={path}>
+          Current Stock
         </Link>
-      </h1>
-      <span
-        style={{
-          flexGrow: 1,
-        }}
-      />
-      <div style={{ margin: 0, paddingTop: '1em' }}>
-        <Link
-          to="/history/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-            padding: '0 .5em',
-          }}
-        >
+        |
+        <Link to="/history/" className={path}>
           History
         </Link>
-        <Link
-          to="/graphs/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-            padding: '0 .5em',
-          }}
-        >
+        |
+        <Link to="/graphs/" className={path}>
           Graphs
         </Link>
       </div>

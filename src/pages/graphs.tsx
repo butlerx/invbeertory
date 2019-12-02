@@ -1,7 +1,7 @@
 import React, { SFC } from 'react';
 import { Link, graphql } from 'gatsby';
 
-import { Layout, SEO, Pie, Bar, Card } from '../components';
+import { Layout, SEO, Pie, Bar, Card, Deck } from '../components';
 import { Beer } from '../types';
 import { purchasesByBrewery, purchasesByStyle, stockByAbv, sortIntKeys } from '../utils';
 
@@ -20,12 +20,14 @@ const IndexPage: SFC<Props> = ({
 }) => (
   <Layout>
     <SEO title="Brewery Stats" />
-    <Card>
-      <Pie title="Beers by Brewery" data={purchasesByBrewery(nodes)} />
-    </Card>
-    <Card>
-      <Bar title="ABV in stock" data={sortIntKeys(stockByAbv(nodes))} />
-    </Card>
+    <Deck>
+      <Card>
+        <Pie title="Beers by Brewery" data={purchasesByBrewery(nodes)} />
+      </Card>
+      <Card>
+        <Bar title="ABV in stock" data={sortIntKeys(stockByAbv(nodes))} />
+      </Card>
+    </Deck>
   </Layout>
 );
 

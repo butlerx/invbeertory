@@ -1,0 +1,67 @@
+@import 'variables', 'colours.module';
+
+body {
+  background-color: base('00');
+  color: base('07');
+  font-family: $fonts;
+  font-size: 100%;
+  line-height: 1.5;
+  margin: 0;
+}
+
+header {
+  @include pageBase;
+  @include margin($bottom: 2rem, $top: 1rem);
+
+  @include breakpointMd {
+    @include padding($left: 2rem, $right: 2rem);
+    margin-top: 0;
+  }
+}
+
+p {
+  margin-bottom: 1rem;
+  margin-top: 0;
+}
+
+@each $prop,
+  $font-size
+    in (
+      'h1': 2rem,
+      'h2': 1.5rem,
+      'h3': 1.25rem,
+      'h4': 1rem,
+      'h5': 0.875rem,
+      'h6': 0.75rem
+    )
+{
+  #{$prop} {
+    @include margin($bottom: 0.5em, $top: 1em);
+    font-size: $font-size;
+    font-weight: bold;
+    line-height: 1.25;
+  }
+}
+
+pre,
+code {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+footer {
+  @include pageBase;
+  @include margin($bottom: 1rem, $top: 2rem);
+  @include breakpointMd {
+    @include margin($bottom: 0, $top: 0);
+  }
+
+  color: base('03');
+  font-size: 0.9em;
+  text-align: center;
+
+  a {
+    color: base('03');
+    text-decoration: none;
+  }
+}

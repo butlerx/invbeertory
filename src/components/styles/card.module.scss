@@ -1,0 +1,90 @@
+@import 'deck.module';
+
+.single {
+  .meta {
+    font-size: 0.9em;
+    text-align: right;
+
+    .key {
+      color: base('03');
+    }
+
+    .val {
+      color: base('0e');
+
+      a {
+        color: base('0e');
+      }
+    }
+  }
+
+  h1 {
+    &.headline {
+      color: base('0a');
+      font-size: 2em;
+      margin-top: 0;
+    }
+  }
+
+  section {
+    @include cardLayout;
+    @include padding;
+    @include margin($bottom: 3rem);
+    @each $prop,
+      $color
+        in (
+          'h1': base('0d'),
+          'h2': base('0b'),
+          'h3': base('09'),
+          'h4': base('08'),
+          'h5': base('02'),
+          'h6': base('03'),
+          'a': base('0f')
+        )
+    {
+      #{$prop} {
+        color: $color;
+      }
+    }
+  }
+
+  * {
+    max-width: 100%;
+  }
+
+  pre {
+    @include margin($bottom: 1rem, $top: 0);
+    border-radius: 3px;
+    overflow-x: auto;
+    padding: 2rem;
+  }
+
+  blockquote {
+    @include margin($left: 2rem, $right: 3rem);
+    border-left: 5px solid base('0c');
+    padding-left: 1rem;
+  }
+
+  hr {
+    border: 0;
+    border-bottom: 1px solid base('04');
+  }
+
+  @include breakpointMd {
+    .meta {
+      @include padding($left: 2rem, $right: 2rem);
+    }
+
+    h1 {
+      &.headline {
+        @include padding($left: 2rem, $right: 2rem);
+      }
+    }
+
+    section {
+      &.body {
+        @include padding($top: 2rem, $bottom: 1rem);
+      }
+    }
+  }
+}

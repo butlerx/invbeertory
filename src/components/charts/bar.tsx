@@ -1,6 +1,6 @@
 import React, { SFC, useRef, useState, useEffect } from 'react';
 import xkcd from 'chart.xkcd';
-import { colours as dataColors } from '../../utils';
+import { colours as dataColors, base } from '../../utils';
 
 interface Props {
   data: { [string]: number };
@@ -23,6 +23,7 @@ export const Bar: SFC<Props> = ({ title, data, config }) => {
           ],
         },
         options: Object.assign(config || {}, {
+          backgroundColor: base('07'),
           yTickCount: 10,
           dataColors,
         }),
