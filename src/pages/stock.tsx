@@ -12,18 +12,16 @@ interface Props {
   };
 }
 
-const IndexPage: SFC<Props> = ({
+const StockPage: SFC<Props> = ({
   data: {
     allGoogleSpreadsheetBeerInv: { nodes },
   },
-}) => {
-  return (
-    <Layout>
-      <SEO title="Inventory" />
-      <BeerTable title="Current Stock" beers={nodes} />
-    </Layout>
-  );
-};
+}) => (
+  <Layout>
+    <SEO title="Inventory" />
+    <BeerTable title="Current Stock" beers={nodes} />
+  </Layout>
+);
 
 export const query = graphql`
   query {
@@ -36,9 +34,13 @@ export const query = graphql`
         style
         size
         stock
+        collaborator
+        barrelAged
+        barrelType
+        brewedWith
       }
     }
   }
 `;
 
-export default IndexPage;
+export default StockPage;

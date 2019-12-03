@@ -21,4 +21,4 @@ export const baseColours = {
   '0f': '#d27b53',
 };
 
-export const base = (num: string) => baseColours[num];
+export const base = (num: string): string => baseColours[num];

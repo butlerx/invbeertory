@@ -14,21 +14,28 @@ export const Layout: SFC<{}> = ({ children }) => (
           siteMetadata {
             title
             author
+            menu {
+              name
+              link
+            }
           }
         }
       }
     `}
-    render={data => (
+    render={({
+      site: {
+        siteMetadata: { title, author, menu },
+      },
+    }) => (
       <>
-        <Header siteTitle={data.site.siteMetadata.title} />
+        <Header siteTitle={title} menu={menu} />
         <div className={container}>
           <main>{children}</main>
         </div>
         <footer>
           <div className={container}>
             <span>
-              &copy; {getMonth(new Date().getMonth())}, {new Date().getFullYear()}{' '}
-              {data.site.author} -{' '}
+              &copy; {getMonth(new Date().getMonth())}, {new Date().getFullYear()} {author} -{' '}
               <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
                 CC BY 4.0
               </a>

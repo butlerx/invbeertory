@@ -8,4 +8,9 @@ export interface Beer {
   drunk: boolean;
   stock: number;
   purchased: number;
+  ibu?: number;
+  collaborator?: string;
+  barrelAged: boolean;
+  barrelType?: string;
+  brewedWith?: string;
 }

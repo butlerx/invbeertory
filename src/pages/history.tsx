@@ -16,14 +16,12 @@ const IndexPage: SFC<Props> = ({
   data: {
     allGoogleSpreadsheetBeerInv: { nodes },
   },
-}) => {
-  return (
-    <Layout>
-      <SEO title="History" />
-      <BeerTable title="History" beers={nodes} />
-    </Layout>
-  );
-};
+}) => (
+  <Layout>
+    <SEO title="History" />
+    <BeerTable title="History" beers={nodes} />
+  </Layout>
+);
 
 export const query = graphql`
   query {
@@ -36,6 +34,10 @@ export const query = graphql`
         style
         size
         stock
+        collaborator
+        barrelAged
+        barrelType
+        brewedWith
       }
     }
   }
