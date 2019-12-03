@@ -2,20 +2,12 @@ import React, { SFC } from 'react';
 import { Link, graphql } from 'gatsby';
 
 import { Layout, SEO, Pie, Bar, Card, Deck } from '../components';
-import { Beer } from '../types';
+import { Beer, StockProps } from '../types';
 import { purchasesByBrewery, purchasesByStyle, stockByAbv, sortIntKeys } from '../utils';
 
-interface Props {
+const Graphs: SFC<StockProps> = ({
   data: {
-    allGoogleSpreadsheetBeerInv: {
-      nodes: Beer[];
-    };
-  };
-}
-
-const IndexPage: SFC<Props> = ({
-  data: {
-    allGoogleSpreadsheetBeerInv: { nodes },
+    allGoogleSheetBeerInvRow: { nodes },
   },
 }) => (
   <Layout>
@@ -33,7 +25,7 @@ const IndexPage: SFC<Props> = ({
 
 export const query = graphql`
   query {
-    allGoogleSpreadsheetBeerInv {
+    allGoogleSheetBeerInvRow {
       nodes {
         brewery
         abv
@@ -45,4 +37,4 @@ export const query = graphql`
   }
 `;
 
-export default IndexPage;
+export default Graphs;

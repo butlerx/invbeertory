@@ -26,7 +26,7 @@
     "gatsby-plugin-react-helmet": "^3.0.12",
     "gatsby-plugin-sass": "^2.0.11",
     "gatsby-plugin-typescript": "^2.0.14",
-    "gatsby-source-google-spreadsheet": "^1.2.0",
+    "gatsby-source-google-sheets": "^1.1.1",
     "node-sass": "^4.12.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",

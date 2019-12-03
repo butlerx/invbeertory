@@ -15,7 +15,7 @@ interface Props {
   };
 }
 
-const IndexPage: SFC<Props> = ({
+const Index: SFC<Props> = ({
   data: {
     site: {
       siteMetadata: { title, description },
@@ -41,4 +41,4 @@ export const query = graphql`
   }
 `;
 
-export default IndexPage;
+export default Index;

@@ -10,6 +10,7 @@ const buildCredentials = ({
   CLIENT_EMAIL,
 }) => ({
   spreadsheetId: SPREADSHEET_ID,
+  worksheetTitle: 'beer_inv',
   credentials: {
     type: 'service_account',
     project_id: PROJECT_ID || project.id,
@@ -48,7 +49,7 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-source-google-spreadsheet',
+      resolve: 'gatsby-source-google-sheets',
       options: buildCredentials(process.env),
     },
     'gatsby-plugin-offline',

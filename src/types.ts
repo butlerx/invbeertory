@@ -14,3 +14,11 @@ export interface Beer {
   barrelType?: string;
   brewedWith?: string;
 }
+
+export interface StockProps {
+  data: {
+    allGoogleSheetBeerInvRow: {
+      nodes: Beer[];
+    };
+  };
+}
