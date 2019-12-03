@@ -3,7 +3,7 @@ import xkcd from 'chart.xkcd';
 import { colours as dataColors, base } from '../../utils';
 
 interface Props {
-  data: { [string]: number };
+  data: { [key: string]: number };
   title?: string;
   config?: object;
 }

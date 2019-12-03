@@ -1,4 +1,4 @@
-export const sortIntKeys = (dict: { [number]: any }): { [number]: any } =>
+export const sortIntKeys = (dict: { [key: number]: any }): { [key: number]: any } =>
   Object.keys(dict)
     .map(parseFloat)
     .sort((a, b) => a - b)

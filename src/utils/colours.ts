@@ -1,8 +1,8 @@
-export const colours = [...Array(255).keys()].map(
+export const colours = [...Array.from(new Set(Array(255).keys()))].map(
   brewery => '#' + Math.floor(Math.random() * 16777215).toString(16),
 );
 
-export const baseColours = {
+export const baseColours: { [key: string]: string } = {
   '00': '#2d2d2d',
   '01': '#393939',
   '02': '#515151',

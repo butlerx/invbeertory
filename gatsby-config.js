@@ -43,7 +43,7 @@ module.exports = {
         name,
         short_name: name,
         start_url: '/',
-        background_color: '#f2f0ec',
+        background_color: '#2d2d2d',
         theme_color: '#f2f0ec',
         display: 'minimal-ui',
       },

@@ -27,6 +27,9 @@
   }
 
   section {
+    @include breakpointMd {
+      @include padding($left: 0.5rem, $right: 0.5rem);
+    }
     @include cardLayout;
     @include padding;
     @include margin($bottom: 3rem);

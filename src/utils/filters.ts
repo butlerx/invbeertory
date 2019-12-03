@@ -1,4 +1,9 @@
-export function filterCaseInsensitive(filter, row) {
+import { Beer } from '../types';
+
+export function filterCaseInsensitive(
+  filter: { value: string; id: string; pivotId: string },
+  row: Beer,
+): boolean {
   const content = row[filter.pivotId || filter.id];
   if (typeof content !== 'undefined') {
     // filter by text in the table or if it's a object, filter by key
