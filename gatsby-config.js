@@ -37,14 +37,15 @@ module.exports = {
     'gatsby-plugin-typescript',
     'gatsby-plugin-sass',
     'gatsby-plugin-react-helmet',
+    'gatsby-plugin-mdx',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
         name,
         short_name: name,
         start_url: '/',
-        background_color: '#2d2d2d',
-        theme_color: '#f2f0ec',
+        background_color: '#f2f0ec',
+        theme_color: '#2d2d2d',
         display: 'minimal-ui',
       },
     },

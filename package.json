@@ -19,9 +19,12 @@
   ],
   "project": {},
   "dependencies": {
+    "@mdx-js/mdx": "^1.5.1",
+    "@mdx-js/react": "^1.5.1",
     "chart.xkcd": "^1.1.11",
     "gatsby": "^2.5.7",
     "gatsby-plugin-manifest": "^2.1.1",
+    "gatsby-plugin-mdx": "^1.0.61",
     "gatsby-plugin-offline": "^2.1.1",
     "gatsby-plugin-react-helmet": "^3.0.12",
     "gatsby-plugin-sass": "^2.0.11",
