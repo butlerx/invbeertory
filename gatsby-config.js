@@ -10,7 +10,7 @@ const buildCredentials = ({
   CLIENT_EMAIL,
 }) => ({
   spreadsheetId: SPREADSHEET_ID,
-  worksheetTitle: 'beer_inv',
+  worksheetTitle: 'inventory',
   credentials: {
     type: 'service_account',
     project_id: PROJECT_ID || project.id,

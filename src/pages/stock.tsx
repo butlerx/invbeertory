@@ -6,7 +6,7 @@ import { Beer, StockProps } from '../types';
 
 const Stock: SFC<StockProps> = ({
   data: {
-    allGoogleSheetBeerInvRow: { nodes },
+    allGoogleSheetInventoryRow: { nodes },
   },
 }) => (
   <Layout>
@@ -17,7 +17,7 @@ const Stock: SFC<StockProps> = ({
 
 export const query = graphql`
   query {
-    allGoogleSheetBeerInvRow(filter: { stock: { ne: 0 } }) {
+    allGoogleSheetInventoryRow(filter: { stock: { ne: 0 } }) {
       nodes {
         name
         brewery

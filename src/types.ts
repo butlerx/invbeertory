@@ -17,7 +17,7 @@ export interface Beer {
 
 export interface StockProps {
   data: {
-    allGoogleSheetBeerInvRow: {
+    allGoogleSheetInventoryRow: {
       nodes: Beer[];
     };
   };
