@@ -4,7 +4,7 @@ import { Coffee } from './coffee';
 export interface StockProps {
   data: {
     allGoogleSheetInventoryRow: {
-      nodes: (Beer | Coffee)[];
+      nodes: Beer[];
     };
   };
 }

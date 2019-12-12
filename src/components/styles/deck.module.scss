@@ -11,6 +11,13 @@
 }
 
 .deck {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  .card {
+  }
+
   h1 {
     &.listTitle {
       color: base('0a');
