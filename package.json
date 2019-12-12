@@ -19,8 +19,10 @@
   ],
   "project": {},
   "dependencies": {
+    "@gatsby-contrib/gatsby-plugin-elasticlunr-search": "^2.3.0",
     "chart.xkcd": "^1.1.11",
     "dotenv": "^8.2.0",
+    "elasticlunr": "^0.9.5",
     "gatsby": "^2.5.7",
     "gatsby-plugin-manifest": "^2.1.1",
     "gatsby-plugin-offline": "^2.1.1",

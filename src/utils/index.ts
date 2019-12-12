@@ -5,6 +5,7 @@ export * from './dates';
 export * from './filters';
 export * from './object';
 export * from './style';
+export * from './url';
 
 export const purchasesByStyle = purchasesBy('style');
 export const purchasesByBrewery = purchasesBy('brewery');

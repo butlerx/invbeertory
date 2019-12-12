@@ -2,9 +2,15 @@
 
 .search {
   display: flex;
+  flex-direction: column;
 
-  h1 {
-    @include margin($top: inherit, $left: inherit);
+  &Results {
+    font-size: 1.5rem;
+    list-style: none;
+
+    a {
+      text-decoration: none;
+    }
   }
 
   &Box {
@@ -15,6 +21,6 @@
     margin-top: 0.5rem;
     padding-left: 1.5rem;
     transition: background 0.55s ease;
-    width: 20rem;
+    width: 100%;
   }
 }

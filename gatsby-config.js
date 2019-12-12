@@ -65,5 +65,22 @@ module.exports = {
       options: buildCredentials(process.env),
     },
     'gatsby-plugin-offline',
+    {
+      resolve: `@gatsby-contrib/gatsby-plugin-elasticlunr-search`,
+      options: {
+        fields: [`name`, `brewery`, 'year', 'abv', 'style', 'collaborator'],
+        resolvers: {
+          // For any node of type MarkdownRemark, list how to resolve the fields` values
+          googleSheetInventoryRow: {
+            name: node => node.name,
+            year: node => node.year,
+            brewery: ({ brewery }) => brewery,
+            abv: ({ abv }) => abv,
+            style: ({ style }) => style,
+            collaborator: ({ collaborator }) => collaborator,
+          },
+        },
+      },
+    },
   ],
 };

@@ -1,7 +1,7 @@
 import React, { SFC } from 'react';
 import { graphql } from 'gatsby';
 
-import { Layout, SEO, Hero } from '../components';
+import { Layout, SEO, Hero, Search } from '../components';
 
 interface Props {
   data: {
@@ -11,6 +11,7 @@ interface Props {
         description: string;
       };
     };
+    siteSearchIndex: { index: object };
   };
 }
 
@@ -19,11 +20,13 @@ const Index: SFC<Props> = ({
     site: {
       siteMetadata: { title, description },
     },
+    siteSearchIndex,
   },
 }) => (
   <Layout>
     <SEO title="Invbeertory" />
     <Hero title={title} message={description} />
+    <Search searchIndex={siteSearchIndex.index} />
   </Layout>
 );
 
@@ -34,6 +37,9 @@ export const query = graphql`
         title
         description
       }
+    }
+    siteSearchIndex {
+      index
     }
   }
 `;
