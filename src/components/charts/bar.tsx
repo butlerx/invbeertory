@@ -1,4 +1,5 @@
-import React, { SFC, useRef, useState, useEffect } from 'react';
+/* eslint-disable no-new */
+import React, { SFC, useRef, useEffect } from 'react';
 import xkcd from 'chart.xkcd';
 import { colours as dataColors, base } from '../../utils';
 
@@ -12,7 +13,7 @@ export const Bar: SFC<Props> = ({ title, data, config }) => {
   const ref = useRef();
   useEffect(() => {
     if (ref.current) {
-      const myChart = new xkcd.Bar(ref.current, {
+      new xkcd.Bar(ref.current, {
         title,
         data: {
           labels: Object.keys(data),

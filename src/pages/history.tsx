@@ -1,8 +1,8 @@
 import React, { SFC } from 'react';
-import { Link, graphql } from 'gatsby';
+import { graphql } from 'gatsby';
 
 import { Layout, SEO, BeerTable } from '../components';
-import { Beer, StockProps } from '../types';
+import { StockProps } from '../types';
 
 const History: SFC<StockProps> = ({
   data: {

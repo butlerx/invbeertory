@@ -1,8 +1,7 @@
 import React, { SFC } from 'react';
-import { Link, graphql } from 'gatsby';
+import { graphql } from 'gatsby';
 
 import { Layout, SEO, Hero } from '../components';
-import { Beer } from '../types';
 
 interface Props {
   data: {
@@ -21,14 +20,12 @@ const Index: SFC<Props> = ({
       siteMetadata: { title, description },
     },
   },
-}) => {
-  return (
-    <Layout>
-      <SEO title="Invbeertory" />
-      <Hero title={title} message={description} />
-    </Layout>
-  );
-};
+}) => (
+  <Layout>
+    <SEO title="Invbeertory" />
+    <Hero title={title} message={description} />
+  </Layout>
+);
 
 export const query = graphql`
   query {

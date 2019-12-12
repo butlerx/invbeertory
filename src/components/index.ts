@@ -6,3 +6,4 @@ export * from './layout';
 export * from './seo';
 export * from './table';
 export * from './hero';
+export * from './info';

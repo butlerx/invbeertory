@@ -1,20 +1,17 @@
-import React from 'react';
-import { Beer } from '../../../types';
+/* eslint-disable no-underscore-dangle */
+
+import React, { ReactElement } from 'react';
 import { TableBeer } from '../types';
-import { inObject } from '../../../utils';
+import { formatStyle } from '../../../utils';
 import { left } from '../style.module.scss';
 
-const barrelAged = (beer: Beer): string => (beer.barrelAged ? 'Barrel Aged' : '');
+const Cell = ({ row }: { row: TableBeer }): ReactElement => (
+  <div className={left}>{formatStyle(row._original)}</div>
+);
 
-const brewedIn = (beer: Beer): string =>
-  inObject('barrelType', beer) ? `in ${beer.barrelType} Barrels` : '';
-
-const brewedWith = (beer: Beer): string =>
-  inObject('brewedWith', beer) ? `with ${beer.brewedWith}` : '';
-
-const formatStyle = (beer: Beer): string =>
-  `${barrelAged(beer)} ${beer.style} ${brewedWith(beer)} ${brewedIn(beer)}`;
-
-export const style = ({ row }: { row: TableBeer }) => {
-  return <div className={left}>{formatStyle(row._original)}</div>;
+export const style = {
+  Header: 'Style',
+  accessor: 'style',
+  minWidth: 40,
+  Cell,
 };

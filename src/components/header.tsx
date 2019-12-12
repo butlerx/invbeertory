@@ -1,5 +1,5 @@
-import { Link } from 'gatsby';
 import React, { SFC } from 'react';
+import { Link } from 'gatsby';
 import { container, clearfix, caret, right, path } from './styles/layout.module.scss';
 
 interface Props {
@@ -17,7 +17,7 @@ export const Header: SFC<Props> = ({ siteTitle, menu }) => (
       <div className={right}>
         {menu.map(({ link, name }, i) => (
           <>
-            {i != 0 ? ' | ' : ''}
+            {i !== 0 ? ' | ' : ''}
             <Link to={link} className={path}>
               {name}
             </Link>
@@ -29,5 +29,5 @@ export const Header: SFC<Props> = ({ siteTitle, menu }) => (
 );
 
 Header.defaultProps = {
-  siteTitle: ``,
+  siteTitle: '',
 };

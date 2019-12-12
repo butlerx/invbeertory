@@ -4,10 +4,10 @@ import { single, headline, body, metadata, key, val } from './styles/card.module
 
 interface Props {
   title?: string;
-  meta?: { [key: string]: string };
+  meta?: { [key: string]: string | number };
 }
 
-const titleCase = (word: string) => word.charAt(0).toUpperCase() + word.slice(1);
+const titleCase = (word: string): string => word.charAt(0).toUpperCase() + word.slice(1);
 
 export const Card: SFC<Props> = ({ title, meta, children }) => (
   <div className={single}>
@@ -15,7 +15,8 @@ export const Card: SFC<Props> = ({ title, meta, children }) => (
       <div className={metadata}>
         {Object.entries(meta).map(([k, v]) => (
           <>
-            <span className={key}>{titleCase(k)}:</span>&nbsp;
+            <span className={key}>{titleCase(k)}:</span>
+            &nbsp;
             <span className={val}>{v}</span>
             <br />
           </>

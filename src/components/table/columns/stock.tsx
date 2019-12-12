@@ -1,5 +1,12 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Beer } from '../../../types';
 import { right } from '../style.module.scss';
 
-export const stock = ({ row }: { row: Beer }) => <div className={right}>{row.stock}</div>;
+const Cell = ({ row }: { row: Beer }): ReactElement => <div className={right}>{row.stock}</div>;
+
+export const stock = {
+  Header: 'Stock',
+  accessor: 'stock',
+  minWidth: 6,
+  Cell,
+};

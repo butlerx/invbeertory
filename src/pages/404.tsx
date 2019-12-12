@@ -6,7 +6,7 @@ import { pageNotFound } from '../components/styles/404.module.scss';
 import { path } from '../components/styles/layout.module.scss';
 import { base05, base08, base09, base0a } from '../components/styles/colours.module.scss';
 
-const error: SFC<{}> = props => (
+const error: SFC<{}> = () => (
   <Layout>
     <SEO title="404: Not found" />
     <div className={pageNotFound}>

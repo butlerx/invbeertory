@@ -3,7 +3,8 @@ import ReactTable, { ReactTableDefaults } from 'react-table';
 import 'react-table/react-table.css';
 
 import { filterCaseInsensitive } from '../../utils';
-import { Deck, Card } from '..';
+import { Card } from '../card';
+import { Deck } from '../deck';
 import { Beer } from '../../types';
 import { table } from './style.module.scss';
 import { columns } from './columns';

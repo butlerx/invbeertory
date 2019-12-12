@@ -1,5 +1,5 @@
 export const colours = [...Array.from(new Set(Array(255).keys()))].map(
-  brewery => '#' + Math.floor(Math.random() * 16777215).toString(16),
+  num => `#${Math.floor(num * 16777215).toString(16)}`,
 );
 
 export const baseColours: { [key: string]: string } = {

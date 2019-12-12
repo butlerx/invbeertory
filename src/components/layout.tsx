@@ -1,4 +1,4 @@
-import React, { SFC } from 'react';
+import React, { SFC, ReactElement } from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 
 import { getMonth } from '../utils';
@@ -26,7 +26,7 @@ export const Layout: SFC<{}> = ({ children }) => (
       site: {
         siteMetadata: { title, author, menu },
       },
-    }) => (
+    }): ReactElement => (
       <>
         <Header siteTitle={title} menu={menu} />
         <div className={container}>
@@ -37,6 +37,7 @@ export const Layout: SFC<{}> = ({ children }) => (
             <span>
               &copy; {getMonth(new Date().getMonth())}, {new Date().getFullYear()} {author} -{' '}
               <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                {' '}
                 CC BY 4.0
               </a>
             </span>

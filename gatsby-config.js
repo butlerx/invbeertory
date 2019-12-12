@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/camelcase, @typescript-eslint/no-var-requires, @typescript-eslint/explicit-function-return-type */
 const { name, description, author, menu, project } = require('./package.json');
 
 require('dotenv').config();
@@ -37,7 +38,17 @@ module.exports = {
     'gatsby-plugin-typescript',
     'gatsby-plugin-sass',
     'gatsby-plugin-react-helmet',
-    'gatsby-plugin-mdx',
+    {
+      resolve: 'gatsby-plugin-eslint',
+      options: {
+        test: /\.ts$|\.tsx$/,
+        stages: ['develop', 'build-javascript'],
+        options: {
+          emitWarning: true,
+          failOnError: true,
+        },
+      },
+    },
     {
       resolve: 'gatsby-plugin-manifest',
       options: {

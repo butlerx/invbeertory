@@ -1,4 +1,5 @@
-import React, { SFC, useRef, useState, useEffect } from 'react';
+/* eslint-disable no-new */
+import React, { SFC, useRef, useEffect } from 'react';
 import xkcd from 'chart.xkcd';
 import { colours as dataColors, base } from '../../utils';
 
@@ -14,7 +15,7 @@ export const Line: SFC<Props> = ({ title, data, config, xLabel, yLabel }) => {
   const ref = useRef();
   useEffect(() => {
     if (ref.current) {
-      const myChart = new xkcd.Line(ref.current, {
+      new xkcd.Line(ref.current, {
         title,
         xLabel,
         yLabel,

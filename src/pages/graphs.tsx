@@ -1,8 +1,8 @@
 import React, { SFC } from 'react';
-import { Link, graphql } from 'gatsby';
+import { graphql } from 'gatsby';
 
 import { Layout, SEO, Pie, Bar, Card, Deck } from '../components';
-import { Beer, StockProps } from '../types';
+import { StockProps } from '../types';
 import { purchasesByBrewery, purchasesByStyle, stockByAbv, sortIntKeys } from '../utils';
 
 const Graphs: SFC<StockProps> = ({
@@ -18,6 +18,9 @@ const Graphs: SFC<StockProps> = ({
       </Card>
       <Card>
         <Bar title="ABV in stock" data={sortIntKeys(stockByAbv(nodes))} />
+      </Card>
+      <Card>
+        <Pie title="Beers by Style" data={purchasesByStyle(nodes)} />
       </Card>
     </Deck>
   </Layout>
