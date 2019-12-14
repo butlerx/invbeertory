@@ -11,7 +11,6 @@ const buildCredentials = ({
   CLIENT_EMAIL,
 }) => ({
   spreadsheetId: SPREADSHEET_ID,
-  worksheetTitle: 'inventory',
   credentials: {
     type: 'service_account',
     project_id: PROJECT_ID || project.id,
@@ -61,7 +60,7 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-source-google-sheets',
+      resolve: 'gatsby-source-google-spreadsheets',
       options: buildCredentials(process.env),
     },
     'gatsby-plugin-offline',
@@ -70,10 +69,9 @@ module.exports = {
       options: {
         fields: [`name`, `brewery`, 'year', 'abv', 'style', 'collaborator'],
         resolvers: {
-          // For any node of type MarkdownRemark, list how to resolve the fields` values
-          googleSheetInventoryRow: {
-            name: node => node.name,
-            year: node => node.year,
+          googleSheet: {
+            name: inventory => inventory.name,
+            year: ({ year }) => year,
             brewery: ({ brewery }) => brewery,
             abv: ({ abv }) => abv,
             style: ({ style }) => style,

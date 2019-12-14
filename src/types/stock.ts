@@ -3,8 +3,8 @@ import { Coffee } from './coffee';
 
 export interface StockProps {
   data: {
-    allGoogleSheetInventoryRow: {
-      nodes: Beer[];
+    googleSheet: {
+      inventory: Beer[];
     };
   };
 }
