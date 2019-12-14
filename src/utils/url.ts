@@ -1,4 +1,11 @@
 import { Beer } from '../types';
 
-export const makeUrl = (beer: Beer): string =>
-  [beer.brewery, beer.year, beer.name].map(uri => uri.toString().toLowerCase()).join('/');
+export const makeUrl = ({ brewery, year, name }: Beer): string =>
+  [brewery, year, name]
+    .map(uri =>
+      uri
+        .toString()
+        .replace(/\s+/g, '_')
+        .toLowerCase(),
+    )
+    .join('/');

@@ -1,26 +1,35 @@
 import React, { SFC } from 'react';
 import { graphql } from 'gatsby';
 
-import { Layout, SEO, Pie, Bar, Card, Deck } from '../components';
+import { Layout, SEO, Pie, Bar, Card, Deck, StackedBar } from '../components';
 import { StockProps } from '../types';
-import { purchasesByBrewery, purchasesByStyle, stockByAbv, sortIntKeys } from '../utils';
+import {
+  purchasesByBrewery,
+  purchasesByStyle,
+  stockByAbv,
+  sortIntKeys,
+  breweryByStyle,
+} from '../utils';
 
 const Graphs: SFC<StockProps> = ({
   data: {
-    allGoogleSheetInventoryRow: { nodes },
+    googleSheet: { inventory },
   },
 }) => (
   <Layout>
     <SEO title="Brewery Stats" />
     <Deck>
       <Card>
-        <Pie title="Beers by Brewery" data={purchasesByBrewery(nodes)} />
+        <Pie title="Beers by Brewery" data={purchasesByBrewery(inventory)} />
       </Card>
       <Card>
-        <Bar title="ABV in stock" data={sortIntKeys(stockByAbv(nodes))} />
+        <Bar title="ABV in stock" data={sortIntKeys(stockByAbv(inventory))} />
       </Card>
       <Card>
-        <Pie title="Beers by Style" data={purchasesByStyle(nodes)} />
+        <Pie title="Beers by Style" data={purchasesByStyle(inventory)} />
+      </Card>
+      <Card>
+        <StackedBar title="Brewery by Style" data={breweryByStyle(inventory)} />
       </Card>
     </Deck>
   </Layout>
@@ -28,8 +37,8 @@ const Graphs: SFC<StockProps> = ({
 
 export const query = graphql`
   query {
-    allGoogleSheetInventoryRow {
-      nodes {
+    googleSheet {
+      inventory {
         brewery
         abv
         style

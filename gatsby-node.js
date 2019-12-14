@@ -4,8 +4,8 @@ const beerTemplate = require('path').resolve('src/templates/beer.tsx');
 exports.createPages = ({ actions, graphql, reporter }) =>
   graphql(`
     query {
-      allGoogleSheetInventoryRow {
-        nodes {
+      googleSheet {
+        inventory {
           id
           name
           brewery
@@ -17,12 +17,18 @@ exports.createPages = ({ actions, graphql, reporter }) =>
     if (result.errors) {
       reporter.panicOnBuild('🚨  ERROR: Loading "createPages" query', result.errors);
     }
-
     const { createPage } = actions;
-    const { allGoogleSheetInventoryRow } = result.data;
-    allGoogleSheetInventoryRow.nodes.forEach(({ id, name, brewery, year }) => {
+    const { googleSheet } = result.data;
+    googleSheet.inventory.forEach(({ id, name, brewery, year }) => {
       createPage({
-        path: [brewery, year, name].map(uri => uri.toString().toLowerCase()).join('/'),
+        path: [brewery, year, name]
+          .map(uri =>
+            uri
+              .toString()
+              .replace(/\s+/g, '_')
+              .toLowerCase(),
+          )
+          .join('/'),
         component: beerTemplate,
         context: { id },
       });

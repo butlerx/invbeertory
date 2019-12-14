@@ -5,21 +5,21 @@ import { Layout, SEO, Deck, Info } from '../components';
 import { Beer } from '../types';
 
 interface TemplateProps {
-  data: { googleSheetInventoryRow: Beer };
+  data: { googleInventorySheet: Beer };
 }
 
-const Stock: SFC<TemplateProps> = ({ data: { googleSheetInventoryRow } }) => (
+const Stock: SFC<TemplateProps> = ({ data: { googleInventorySheet } }) => (
   <Layout>
     <SEO title="Inventory" />
     <Deck>
-      <Info beer={googleSheetInventoryRow} />
+      <Info beer={googleInventorySheet} />
     </Deck>
   </Layout>
 );
 
 export const query = graphql`
   query Beer($id: String!) {
-    googleSheetInventoryRow(id: { eq: $id }) {
+    googleInventorySheet(id: { eq: $id }) {
       abv
       barrelAged
       barrelType
