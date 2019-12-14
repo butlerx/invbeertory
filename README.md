@@ -19,14 +19,15 @@ yarn
 
 ## Usage
 
-Before building you will need to add credentials to the `.env` file.
+Before building you will need to add credentials to the `.env` file or set them
+in the shell env. see `.env.sample` or below
 
 ```sh
-PROJECT_ID=<YOUR_PROJECT_ID>
-SPREADSHEET_ID=<YOUR_SPREADHEET_ID>
-CLIENT_EMAIL=<SERVICE_ACCOUNT_EMAIL>
-PRIVATE_KEY_ID=<YOUR_PRIVATE_KEY_ID>
-PRIVATE_KEY=<YOUR_PRIVATE_KEY>
+PROJECT_ID="<YOUR_PROJECT_ID>"
+SPREADSHEET_ID="<YOUR_SPREADHEET_ID>"
+CLIENT_EMAIL="<SERVICE_ACCOUNT_EMAIL>"
+PRIVATE_KEY_ID="<YOUR_PRIVATE_KEY_ID>"
+PRIVATE_KEY="<YOUR_PRIVATE_KEY>"
 ```
 
 You can get the `SPREADSHEET_ID` from the URL of your sheet,
@@ -46,7 +47,7 @@ yarn build
 
 👤 **Cian Butler <butlerx@notthe.cloud>**
 
-- Website: cianbutler.ie
+- Website: [cianbutler.ie](https://cianbutler.ie)
 - Twitter: [@cianbutlerx](https://twitter.com/cianbutlerx)
 - Github: [@butlerx](https://github.com/butlerx)
 
@@ -69,6 +70,3 @@ This project is
 [MIT](https://github.com/butlerx/invbeertory/blob/master/LICENSE) licensed.
 
 ---
-
-_This README was generated with ❤️ by
-[readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
