@@ -1,8 +1,31 @@
 @import 'deck.module';
 
 .single {
+  margin-bottom: 4rem;
+
+  h1 {
+    &.headline {
+      color: base('0a');
+      font-size: 2em;
+      margin-top: 0;
+    }
+  }
+
+  h2 {
+    &.headline {
+      color: base('0d');
+      margin-top: 0;
+
+      a {
+        color: base('0d');
+        margin-top: 0;
+      }
+    }
+  }
+
   .metadata {
     font-size: 0.9em;
+    margin-bottom: 1rem;
     text-align: right;
 
     .key {
@@ -15,14 +38,6 @@
       a {
         color: base('0e');
       }
-    }
-  }
-
-  h1 {
-    &.headline {
-      color: base('0a');
-      font-size: 2em;
-      margin-top: 0;
     }
   }
 
@@ -47,6 +62,12 @@
     {
       #{$prop} {
         color: $color;
+      }
+    }
+
+    &.summary {
+      a {
+        color: base('0f');
       }
     }
   }
