@@ -6191,10 +6191,10 @@ gatsby-react-router-scroll@^2.1.19:
     scroll-behavior "^0.9.10"
     warning "^3.0.0"
 
-gatsby-source-google-spreadsheets@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/gatsby-source-google-spreadsheets/-/gatsby-source-google-spreadsheets-2.1.0.tgz#4b23000a571ac150a50a59f5c0104103d48af629"
-  integrity sha512-gsX8puGPJjFQ+fWK0wWzAotiwVBtLa424fF+x7/TnZfSqxDXSw7GrsoW7belGWMBef/XPXg2biyZVJcBeL7RGQ==
+gatsby-source-google-spreadsheets@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/gatsby-source-google-spreadsheets/-/gatsby-source-google-spreadsheets-2.4.0.tgz#6c02f5787b5c4857ddb6aebfbbc5531ca2c06dcc"
+  integrity sha512-5NoRh9vVWcc5CRpaYa+6ux0uR6JakTbyCU2LpDskEElPKsHbKjqUVreUY5DuOHOYqWe+ttxG79raO9ARw3Kkzg==
   dependencies:
     google-spreadsheet "^2.0.8"
     uuid "^3.3.3"
