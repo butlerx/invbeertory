@@ -26,7 +26,7 @@ export const query = graphql`
         style
         size
         stock
-        collaborator
+        collaborators
         barrelAged
         barrelType
         brewedWith

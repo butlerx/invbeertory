@@ -25,7 +25,7 @@ export const query = graphql`
       barrelType
       brewedWith
       brewery
-      collaborator
+      collaborators
       drunk
       ibu
       name

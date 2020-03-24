@@ -10,7 +10,7 @@ interface Props {
 
 const formatBrewer = (beer: Beer): string =>
   inObject('collaborator', beer)
-    ? `${beer.brewery} in collaboration with ${beer.collaborator}`
+    ? `${beer.brewery} in collaboration with ${beer.collaborators}`
     : beer.brewery;
 
 const formatTitle = (beer: Beer): string => `${beer.name} (${beer.year})`;
