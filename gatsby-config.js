@@ -35,6 +35,7 @@ module.exports = {
   },
   plugins: [
     'gatsby-plugin-typescript',
+    'gatsby-plugin-preact',
     'gatsby-plugin-sass',
     'gatsby-plugin-react-helmet',
     {
@@ -75,7 +76,7 @@ module.exports = {
             brewery: ({ brewery }) => brewery,
             abv: ({ abv }) => abv,
             style: ({ style }) => style,
-            collaborator: ({ collaborator }) => collaborator,
+            collaborators: ({ collaborators }) => collaborators,
           },
         },
       },
