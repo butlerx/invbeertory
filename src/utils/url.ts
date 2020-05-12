@@ -5,7 +5,7 @@ export const makeUrl = ({ brewery, year, name }: Beer): string =>
     .map(uri =>
       uri
         .toString()
-        .replace(/\s+/g, '_')
+        .replace(/(\s+|#)/g, '_')
         .toLowerCase(),
     )
     .join('/');

@@ -59,6 +59,7 @@ module.exports = {
         start_url: '/',
         background_color: '#f2f0ec',
         theme_color: '#2d2d2d',
+        icon: 'src/images/icon.png',
         display: 'minimal-ui',
       },
     },
