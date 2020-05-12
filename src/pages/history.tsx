@@ -17,7 +17,7 @@ const History: SFC<StockProps> = ({
 
 export const query = graphql`
   query {
-    allGoogleInventorySheet {
+    allGoogleInventorySheet(filter: { name: { ne: null } }) {
       nodes {
         name
         brewery
