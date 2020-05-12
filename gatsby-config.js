@@ -9,6 +9,7 @@ const buildCredentials = ({
   PRIVATE_KEY,
   PRIVATE_KEY_ID,
   CLIENT_EMAIL,
+  CLIENT_ID,
 }) => ({
   spreadsheetId: SPREADSHEET_ID,
   credentials: {
@@ -17,12 +18,13 @@ const buildCredentials = ({
     private_key_id: PRIVATE_KEY_ID || project.keyId,
     private_key: (PRIVATE_KEY || project.key).replace(/(\\r)|(\\n)/g, '\n'),
     client_email: CLIENT_EMAIL || project.email,
-    client_id: '',
+    client_id: CLIENT_ID,
     auth_uri: 'https://accounts.google.com/o/oauth2/auth',
     token_uri: 'https://oauth2.googleapis.com/token',
     auth_provider_x509_cert_url: 'https://www.googleapis.com/oauth2/v1/certs',
-    client_x509_cert_url: `https://www.googleapis.com/robot/v1/metadata/x509/${PROJECT_ID ||
-      project.id}%40appspot.gserviceaccount.com`,
+    client_x509_cert_url: `https://www.googleapis.com/robot/v1/metadata/x509/${encodeURIComponent(
+      CLIENT_EMAIL || project.email,
+    )}`,
   },
 });
 

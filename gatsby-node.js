@@ -20,6 +20,7 @@ exports.createPages = ({ actions, graphql, reporter }) =>
     const { createPage } = actions;
     const { googleSheet } = result.data;
     googleSheet.inventory.forEach(({ id, name, brewery, year }) => {
+      if (name == null && brewery == null) return;
       createPage({
         path: [brewery, year, name]
           .map(uri =>
