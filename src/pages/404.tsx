@@ -1,7 +1,7 @@
 import React, { SFC } from 'react';
 import { Link } from 'gatsby';
-import { Layout, SEO } from '../components';
 
+import { Layout, SEO, Deck, Card } from '../components';
 import { pageNotFound } from '../components/styles/404.module.scss';
 import { path } from '../components/styles/layout.module.scss';
 import { base05, base08, base09, base0a } from '../components/styles/colours.module.scss';
@@ -18,14 +18,18 @@ const error: SFC<{}> = () => (
         <span className={base05}>]</span>
         <span className={base05}># _</span>
       </h1>
-      <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-      <p>
-        Please head back{' '}
-        <Link className={path} to="/">
-          home
-        </Link>
-        .
-      </p>
+      <Deck>
+        <Card>
+          <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
+          <p>
+            Please head back{' '}
+            <Link className={path} to="/">
+              home
+            </Link>
+            .
+          </p>
+        </Card>
+      </Deck>
     </div>
   </Layout>
 );
