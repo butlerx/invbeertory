@@ -7,3 +7,25 @@
   package = "@netlify/plugin-sitemap"
 [[plugins]]
   package = "netlify-plugin-checklinks"
+[[plugins]]
+  package = "netlify-plugin-is-website-vulnerable"
+[[plugins]]
+  package = "netlify-plugin-a11y"
+  [plugins.inputs]
+  resultMode = "warn" # is "error" by default
+[[plugins]]
+  package = "netlify-plugin-no-more-404"
+  [plugins.inputs]
+  on404 = "error"  # either "warn" or "error"
+  # change this key to a new one any time you need to restart from scratch
+  cacheKey = "MyCacheKey"
+[[plugins]]
+  package = "@netlify/plugin-lighthouse"
+  [plugins.inputs]
+  audit_url = 'https://beer.notthe.cloud'
+  [plugins.inputs.thresholds]
+    performance = 0.9
+    accessibility = 0.9
+    best-practices = 0.9
+    seo = 0.9
+    pwa = 0.9
