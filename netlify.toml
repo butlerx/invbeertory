@@ -24,8 +24,8 @@
   [plugins.inputs]
   audit_url = 'https://beer.notthe.cloud'
   [plugins.inputs.thresholds]
-    performance = 0.9
-    accessibility = 0.9
-    best-practices = 0.9
+    performance = 0.95
+    accessibility = 0.85 # Should be higer but base16 is not the most accessible
+    best-practices = 1
     seo = 0.9
     pwa = 0.9
