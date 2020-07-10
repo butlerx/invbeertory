@@ -1,6 +1,7 @@
 import { Beer } from '../types';
 
 export const makeUrl = ({ brewery, year, name }: Beer): string =>
+  `/${
   [brewery, year, name]
     .map(uri =>
       uri
@@ -8,4 +9,4 @@ export const makeUrl = ({ brewery, year, name }: Beer): string =>
         .replace(/(\s+|#)/g, '_')
         .toLowerCase(),
     )
-    .join('/');
+    .join('/')}`;
