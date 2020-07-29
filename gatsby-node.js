@@ -27,6 +27,7 @@ exports.createPages = ({ actions, graphql, reporter }) =>
             uri
               .toString()
               .replace(/(\s+|#)/g, '_')
+              .replace('?', '')
               .toLowerCase(),
           )
           .join('/'),
