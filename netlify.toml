@@ -18,7 +18,7 @@
   [plugins.inputs]
   on404 = "error"  # either "warn" or "error"
   # change this key to a new one any time you need to restart from scratch
-  cacheKey = "MyCacheKey"
+  cacheKey = "reCache"
 [[plugins]]
   package = "@netlify/plugin-lighthouse"
   [plugins.inputs]
@@ -29,55 +29,3 @@
     best-practices = 1
     seo = 0.9
     pwa = 0.9
-
-[[redirects]]
-  from = "sierra_nevada/2011/big_foot/"
-  to = "/sierra_nevada_brewing_co./2011/big_foot/"
-
-[[redirects]]
-  from = "sierra_nevada/2012/big_foot/"
-  to = "/sierra_nevada_brewing_co./2012/big_foot/"
-
-[[redirects]]
-  from = "sierra_nevada/2013/big_foot/"
-  to = "/sierra_nevada_brewing_co./2013/big_foot/"
-
-[[redirects]]
-  from = "sierra_nevada/2014/big_foot/"
-  to = "/sierra_nevada_brewing_co./2014/big_foot/"
-
-[[redirects]]
-  from = "sierra_nevada/2015/big_foot/"
-  to = "/sierra_nevada_brewing_co./2015/big_foot/"
-
-[[redirects]]
-  from = "sierra_nevada/2016/big_foot/"
-  to = "/sierra_nevada_brewing_co./2016/big_foot/"
-
-[[redirects]]
-  from = "sierra_nevada/2017/big_foot/"
-  to = "/sierra_nevada_brewing_co./2017/big_foot/"
-
-[[redirects]]
-  from = "sierra_nevada/2018/big_foot/"
-  to = "/sierra_nevada_brewing_co./2018/big_foot/"
-
-[[redirects]]
-  from = "sierra_nevada/2019/big_foot/"
-  to = "/sierra_nevada_brewing_co./2019/big_foot/"
-
-[[redirects]]
-  from = "sierra_nevada/2020/big_foot/"
-  to = "/sierra_nevada_brewing_co./2020/big_foot/"
-
-[[redirects]]
-  from = "sierra_nevada/2019/life_and_limb/"
-  to = "/sierra_nevada_brewing_co./2019/life_and_limb/"
-
-[[redirects]]
-  from = "sierra_nevada/2020/40th_hoppy_anniversary_ale/"
-  to = "/sierra_nevada_brewing_co./2020/40th_hoppy_anniversary_ale/"
-
-[[redirects]]
-  from = "sierra_nevada/2020/torpedo/"
-  to = "/sierra_nevada_brewing_co./2020/torpedo/"
