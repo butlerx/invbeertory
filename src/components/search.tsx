@@ -30,6 +30,8 @@ export const Search: FC<Props> = ({ searchIndex }) => {
     <div className={searchStyles}>
       <input
         type="text"
+        name="search"
+        aria-label="Search"
         placeholder="What beer you looking for?"
         className={searchBox}
         value={query}

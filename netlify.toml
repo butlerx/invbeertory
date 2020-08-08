@@ -18,7 +18,7 @@
   [plugins.inputs]
   on404 = "error"  # either "warn" or "error"
   # change this key to a new one any time you need to restart from scratch
-  cacheKey = "reCache"
+  cacheKey = "reCache2"
 [[plugins]]
   package = "@netlify/plugin-lighthouse"
   [plugins.inputs]
