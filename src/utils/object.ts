@@ -12,7 +12,7 @@ export const sortIntKeys = (dict: IntDict): IntDict =>
   Object.keys(dict)
     .map(parseFloat)
     .sort((a, b) => a - b)
-    .map(key => [key.toFixed(1), dict[key]])
+    .map((key: string) => [key.toFixed(1), dict[key]])
     .reduce((p: IntDict, c) => {
       const [key, value] = c;
       p[key] = value;

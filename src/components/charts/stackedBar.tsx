@@ -4,11 +4,11 @@ import xkcd from 'chart.xkcd';
 import { colours as dataColors, base } from '../../utils';
 
 interface Props {
-  data: { [key: string]: object };
+  data: { [key: string]: { [key: string]: number } };
   xLabel?: string;
   yLabel?: string;
   title?: string;
-  config?: object;
+  config?: Record<string, unknown>;
 }
 
 export const StackedBar: SFC<Props> = ({ title, data, config, xLabel, yLabel }) => {

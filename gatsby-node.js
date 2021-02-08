@@ -1,4 +1,4 @@
-/* eslint-disable  @typescript-eslint/explicit-function-return-type */
+/* eslint-disable @typescript-eslint/no-var-requires, @typescript-eslint/explicit-function-return-type */
 const beerTemplate = require('path').resolve('src/templates/beer.tsx');
 
 exports.createPages = ({ actions, graphql, reporter }) =>
@@ -13,7 +13,7 @@ exports.createPages = ({ actions, graphql, reporter }) =>
         }
       }
     }
-  `).then(result => {
+  `).then((result) => {
     if (result.errors) {
       reporter.panicOnBuild('🚨  ERROR: Loading "createPages" query', result.errors);
     }
@@ -23,7 +23,7 @@ exports.createPages = ({ actions, graphql, reporter }) =>
       if (name === null || brewery === null || year === null) return;
       createPage({
         path: [brewery, year, name]
-          .map(uri =>
+          .map((uri) =>
             uri
               .toString()
               .replace(/(\s+|#)/g, '_')

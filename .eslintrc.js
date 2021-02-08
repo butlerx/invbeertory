@@ -24,7 +24,6 @@ module.exports = {
     },
   },
   rules: {
-    'arrow-parens': ['error', 'as-needed'],
     'func-style': ['error', 'declaration', { allowArrowFunctions: true }],
     'import/extensions': [
       'error',
@@ -38,7 +37,8 @@ module.exports = {
     'import/prefer-default-export': 0,
     'linebreak-style': ['error', 'unix'],
     'no-param-reassign': ['error', { props: false }],
-    'no-use-before-define': ['error', { functions: false }],
+    'no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': ['error', { functions: false }],
     'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
     'react/prop-types': 0,
   },

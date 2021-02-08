@@ -1,4 +1,4 @@
-import React, { FC, useState, ChangeEvent } from 'react';
+import React, { FC, useState, ChangeEvent, Dispatch, SetStateAction } from 'react';
 import { Index } from 'elasticlunr';
 import { Link } from 'gatsby';
 import { makeUrl } from '../utils';
@@ -7,10 +7,12 @@ import { search as searchStyles, searchResults, searchBox } from './styles/searc
 import { path } from './styles/layout.module.scss';
 
 interface Props {
-  searchIndex: object;
+  searchIndex: Record<string, string>;
 }
+type SetQuery = Dispatch<SetStateAction<string>>;
+type SetResults = Dispatch<SetStateAction<Beer[]>>;
 
-const search = (setQuery: Function, setResults: Function, index: Index) => (
+const search = (setQuery: SetQuery, setResults: SetResults, index: Index) => (
   evt: ChangeEvent<HTMLInputElement>,
 ): void => {
   const query = evt.target.value;
@@ -23,8 +25,8 @@ const search = (setQuery: Function, setResults: Function, index: Index) => (
 };
 
 export const Search: FC<Props> = ({ searchIndex }) => {
-  const [query, setQuery] = useState('');
-  const [results, setResults] = useState([]);
+  const [query, setQuery]: [string, SetQuery] = useState('');
+  const [results, setResults]: [Beer[], SetResults] = useState([]);
   const index = Index.load(searchIndex);
   return (
     <div className={searchStyles}>

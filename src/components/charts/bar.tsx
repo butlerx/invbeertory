@@ -8,10 +8,10 @@ interface Props {
   xLabel?: string;
   yLabel?: string;
   title?: string;
-  config?: object;
+  config?: Record<string, unknown>;
 }
 
-export const Bar: SFC<Props> = ({ title, data, config , xLabel, yLabel }) => {
+export const Bar: SFC<Props> = ({ title, data, config, xLabel, yLabel }) => {
   const ref = useRef();
   useEffect(() => {
     if (ref.current) {

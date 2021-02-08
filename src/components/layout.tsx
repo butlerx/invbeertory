@@ -6,7 +6,7 @@ import { Header } from './header';
 import { container } from './styles/layout.module.scss';
 import './styles/main.scss';
 
-export const Layout: SFC<{}> = ({ children }) => (
+export const Layout: SFC<Record<string, never>> = ({ children }) => (
   <StaticQuery
     query={graphql`
       query SiteTitleQuery {

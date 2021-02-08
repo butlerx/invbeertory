@@ -6,7 +6,7 @@ import { colours as dataColors, base } from '../../utils';
 interface Props {
   data: { [key: string]: number };
   title?: string;
-  config?: object;
+  config?: Record<string, unknown>;
 }
 
 export const Pie: SFC<Props> = ({ title, data, config }) => {

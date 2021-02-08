@@ -4,11 +4,11 @@ import xkcd from 'chart.xkcd';
 import { colours as dataColors, base } from '../../utils';
 
 interface Props {
-  data: object;
+  data: { [key: string]: number };
   xLabel?: string;
   yLabel?: string;
   title?: string;
-  config?: object;
+  config?: Record<string, unknown>;
 }
 
 export const XY: SFC<Props> = ({ title, data, config, xLabel, yLabel }) => {

@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/camelcase, @typescript-eslint/no-var-requires, @typescript-eslint/explicit-function-return-type */
+/* eslint-disable @typescript-eslint/no-var-requires, @typescript-eslint/explicit-function-return-type */
 const { name, description, author, menu, project } = require('./package.json');
 
 require('dotenv').config();
@@ -74,7 +74,7 @@ module.exports = {
         fields: [`name`, `brewery`, 'year', 'abv', 'style', 'collaborator'],
         resolvers: {
           googleInventorySheet: {
-            name: node => node.name,
+            name: (node) => node.name,
             year: ({ year }) => year,
             brewery: ({ brewery }) => brewery,
             abv: ({ abv }) => abv,

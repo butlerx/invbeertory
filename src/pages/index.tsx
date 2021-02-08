@@ -11,7 +11,7 @@ interface Props {
         description: string;
       };
     };
-    siteSearchIndex: { index: object };
+    siteSearchIndex: { index: Record<string, string> };
   };
 }
 
