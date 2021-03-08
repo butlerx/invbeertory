@@ -70,7 +70,7 @@
   "scripts": {
     "build": "gatsby build --log-pages",
     "dev": "gatsby develop",
-    "format": "prettier --write src/**/*.{ts,tsx,css} *.{json,js,md}",
+    "format": "prettier --write src/**/*.{ts,tsx,scss} *.{json,js,md}",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "clean": "gatsby clean",
     "deploy": "netlify deploy",
