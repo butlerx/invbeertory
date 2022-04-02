@@ -1,4 +1,4 @@
-import React, { SFC } from 'react';
+import React from 'react';
 import { graphql } from 'gatsby';
 
 import { Layout, SEO, Pie, Bar, Card, Deck, StackedBar } from '../components';
@@ -11,7 +11,7 @@ import {
   breweryByStyle,
 } from '../utils';
 
-const Graphs: SFC<StockProps> = ({
+const Graphs: React.FC<StockProps> = ({
   data: {
     googleSheet: { inventory },
   },

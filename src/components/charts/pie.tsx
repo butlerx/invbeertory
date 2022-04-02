@@ -1,5 +1,5 @@
 /* eslint-disable no-new */
-import React, { SFC, useRef, useEffect } from 'react';
+import React from 'react';
 import xkcd from 'chart.xkcd';
 import { colours as dataColors, base } from '../../utils';
 
@@ -9,9 +9,9 @@ interface Props {
   config?: Record<string, unknown>;
 }
 
-export const Pie: SFC<Props> = ({ title, data, config }) => {
-  const ref = useRef();
-  useEffect(() => {
+export function Pie({ title, data, config }: Props): React.ReactElement {
+  const ref = React.useRef();
+  React.useEffect(() => {
     if (ref.current) {
       new xkcd.Pie(ref.current, {
         title,
@@ -38,7 +38,7 @@ export const Pie: SFC<Props> = ({ title, data, config }) => {
       <svg ref={ref} />
     </div>
   );
-};
+}
 
 Pie.defaultProps = {
   title: '',

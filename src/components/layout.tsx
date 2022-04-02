@@ -1,4 +1,4 @@
-import React, { SFC, ReactElement } from 'react';
+import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 
 import { getMonth } from '../utils';
@@ -6,7 +6,7 @@ import { Header } from './header';
 import { container } from './styles/layout.module.scss';
 import './styles/main.scss';
 
-export const Layout: SFC<Record<string, never>> = ({ children }) => (
+export const Layout: React.FC<Record<string, never>> = ({ children }) => (
   <StaticQuery
     query={graphql`
       query SiteTitleQuery {
@@ -26,7 +26,7 @@ export const Layout: SFC<Record<string, never>> = ({ children }) => (
       site: {
         siteMetadata: { title, author, menu },
       },
-    }): ReactElement => (
+    }): React.ReactElement => (
       <>
         <Header siteTitle={title} menu={menu} />
         <div className={container}>

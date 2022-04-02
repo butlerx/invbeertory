@@ -1,4 +1,4 @@
-import React, { SFC } from 'react';
+import React from 'react';
 import ReactTable, { ReactTableDefaults } from 'react-table';
 import 'react-table/react-table.css';
 
@@ -14,7 +14,7 @@ interface Props {
   title?: string;
 }
 
-export const BeerTable: SFC<Props> = ({ title, beers }) => (
+export const BeerTable: React.FC<Props> = ({ title, beers }) => (
   <Deck>
     <Card title={title}>
       <ReactTable
@@ -34,3 +34,7 @@ export const BeerTable: SFC<Props> = ({ title, beers }) => (
     </Card>
   </Deck>
 );
+
+BeerTable.defaultProps = {
+  title: '',
+};

@@ -1,5 +1,5 @@
-import React, { SFC } from 'react';
-
+import React from 'react';
+import _ from 'lodash';
 import { single, headline, body, metadata, key, val } from './styles/card.module.scss';
 
 interface Props {
@@ -9,9 +9,9 @@ interface Props {
 
 const titleCase = (word: string): string => word.charAt(0).toUpperCase() + word.slice(1);
 
-export const Card: SFC<Props> = ({ title, meta, children }) => (
+export const Card: React.FC<Props> = ({ title, meta, children }) => (
   <div className={single}>
-    {meta !== undefined ? (
+    {!_.isEmpty(meta) ? (
       <div className={metadata}>
         {Object.entries(meta).map(([k, v]) => (
           <>
@@ -26,14 +26,13 @@ export const Card: SFC<Props> = ({ title, meta, children }) => (
       ''
     )}
 
-    {title !== undefined ? (
-      <>
-        <h1 className={headline}>{title}</h1>
-      </>
-    ) : (
-      ''
-    )}
+    {title !== '' ? <h1 className={headline}>{title}</h1> : ''}
 
     <section className={body}>{children}</section>
   </div>
 );
+
+Card.defaultProps = {
+  title: '',
+  meta: {},
+};

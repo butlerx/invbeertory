@@ -1,5 +1,5 @@
 /* eslint-disable no-new */
-import React, { SFC, useRef, useEffect } from 'react';
+import React from 'react';
 import xkcd from 'chart.xkcd';
 import { colours as dataColors, base } from '../../utils';
 
@@ -11,9 +11,9 @@ interface Props {
   config?: Record<string, unknown>;
 }
 
-export const Radar: SFC<Props> = ({ title, data, config, xLabel, yLabel }) => {
-  const ref = useRef();
-  useEffect(() => {
+export function Radar({ title, data, config, xLabel, yLabel }: Props): React.ReactElement {
+  const ref = React.useRef();
+  React.useEffect(() => {
     if (ref.current) {
       new xkcd.Radar(ref.current, {
         title,
@@ -34,8 +34,11 @@ export const Radar: SFC<Props> = ({ title, data, config, xLabel, yLabel }) => {
       <svg ref={ref} />
     </div>
   );
-};
+}
 
 Radar.defaultProps = {
+  title: '',
   config: {},
+  xLabel: '',
+  yLabel: '',
 };

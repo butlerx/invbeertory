@@ -1,10 +1,10 @@
-import React, { SFC } from 'react';
+import React from 'react';
 import { graphql } from 'gatsby';
 
 import { Layout, SEO, BeerTable } from '../components';
 import { StockProps } from '../types';
 
-const Stock: SFC<StockProps> = ({
+const Stock: React.FC<StockProps> = ({
   data: {
     allGoogleInventorySheet: { nodes },
   },

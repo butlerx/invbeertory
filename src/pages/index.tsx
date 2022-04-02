@@ -1,4 +1,4 @@
-import React, { SFC } from 'react';
+import React from 'react';
 import { graphql } from 'gatsby';
 
 import { Layout, SEO, Hero, Search } from '../components';
@@ -15,7 +15,7 @@ interface Props {
   };
 }
 
-const Index: SFC<Props> = ({
+const Index: React.FC<Props> = ({
   data: {
     site: {
       siteMetadata: { title, description },

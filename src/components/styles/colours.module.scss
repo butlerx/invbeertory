@@ -30,7 +30,7 @@ $base: (
 @function drawPalette($colors) {
   $length: length($colors);
   $color-stops: append((), nth($colors, 1), comma);
-  $stop-size: 100 / $length;
+  $stop-size: calc(100 / $length);
 
   @for $i from 1 through $length {
     $color: nth($colors, $i);

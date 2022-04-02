@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 import { Beer } from '../../../types';
 import { center } from '../style.module.scss';
 
-const Cell = ({ row }: { row: Beer }): ReactElement => <div className={center}>{row.year}</div>;
+const Cell = ({ row }: { row: Beer }): ReactElement => <div className={center}>{row.year}</div>
 
 export const year = {
   Header: 'Year',

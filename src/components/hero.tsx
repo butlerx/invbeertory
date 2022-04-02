@@ -1,4 +1,4 @@
-import React, { SFC } from 'react';
+import React from 'react';
 import * as colours from './styles/colours.module.scss';
 import { siteTitle } from './styles/layout.module.scss';
 
@@ -10,7 +10,7 @@ interface Props {
   message: string;
 }
 
-export const Hero: SFC<Props> = ({ title, message }) => (
+export const Hero: React.FC<Props> = ({ title, message }) => (
   <>
     <h1 className={siteTitle}>
       <span className={colours.base05}>[</span>

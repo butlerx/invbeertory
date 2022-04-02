@@ -1,4 +1,4 @@
-import React, { SFC } from 'react';
+import React from 'react';
 import { Link } from 'gatsby';
 import { container, clearfix, caret, right, path } from './styles/layout.module.scss';
 
@@ -7,7 +7,7 @@ interface Props {
   siteTitle?: string;
 }
 
-export const Header: SFC<Props> = ({ siteTitle, menu }) => (
+export const Header: React.FC<Props> = ({ siteTitle, menu }) => (
   <header>
     <div className={[container, clearfix].join(' ')}>
       <Link to="/" className={path}>

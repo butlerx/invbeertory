@@ -1,4 +1,4 @@
-import React, { SFC } from 'react';
+import React from 'react';
 import { graphql } from 'gatsby';
 
 import { Layout, SEO, Deck, Info } from '../components';
@@ -8,7 +8,7 @@ interface TemplateProps {
   data: { googleInventorySheet: Beer };
 }
 
-const Stock: SFC<TemplateProps> = ({ data: { googleInventorySheet } }) => (
+const Stock: React.FC<TemplateProps> = ({ data: { googleInventorySheet } }) => (
   <Layout>
     <SEO title="Inventory" />
     <Deck>

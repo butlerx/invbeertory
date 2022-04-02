@@ -5,9 +5,7 @@ import { TableBeer } from '../types';
 import { formatStyle } from '../../../utils';
 import { left } from '../style.module.scss';
 
-const Cell = ({ row }: { row: TableBeer }): ReactElement => (
-  <div className={left}>{formatStyle(row._original)}</div>
-);
+const Cell = ({ row }: { row: TableBeer }): ReactElement => <div className={left}>{formatStyle(row._original)}</div>
 
 export const style = {
   Header: 'Style',

@@ -1,5 +1,5 @@
 /* eslint-disable no-new */
-import React, { SFC, useRef, useEffect } from 'react';
+import React from 'react';
 import xkcd from 'chart.xkcd';
 import { colours as dataColors, base } from '../../utils';
 
@@ -11,9 +11,9 @@ interface Props {
   config?: Record<string, unknown>;
 }
 
-export const StackedBar: SFC<Props> = ({ title, data, config, xLabel, yLabel }) => {
-  const ref = useRef();
-  useEffect(() => {
+export function StackedBar({ title, data, config, xLabel, yLabel }: Props): React.ReactElement {
+  const ref = React.useRef();
+  React.useEffect(() => {
     if (ref.current) {
       new xkcd.StackedBar(ref.current, {
         title,
@@ -34,9 +34,11 @@ export const StackedBar: SFC<Props> = ({ title, data, config, xLabel, yLabel }) 
       <svg ref={ref} />
     </div>
   );
-};
+}
 
 StackedBar.defaultProps = {
   title: '',
   config: {},
+  xLabel: '',
+  yLabel: '',
 };

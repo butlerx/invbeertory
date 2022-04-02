@@ -1,4 +1,4 @@
-import React, { SFC } from 'react';
+import React from 'react';
 import { Link } from 'gatsby';
 
 import { Layout, SEO, Deck, Card } from '../components';
@@ -6,7 +6,7 @@ import { pageNotFound } from '../components/styles/404.module.scss';
 import { path } from '../components/styles/layout.module.scss';
 import { base05, base08, base09, base0a } from '../components/styles/colours.module.scss';
 
-const error: SFC<Record<string, never>> = () => (
+const error: React.FC<Record<string, never>> = () => (
   <Layout>
     <SEO title="404: Not found" />
     <div className={pageNotFound}>

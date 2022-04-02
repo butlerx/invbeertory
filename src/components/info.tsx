@@ -1,4 +1,4 @@
-import React, { SFC } from 'react';
+import React from 'react';
 
 import { Beer } from '../types';
 import { Card } from './card';
@@ -15,7 +15,7 @@ const formatBrewer = (beer: Beer): string =>
 
 const formatTitle = (beer: Beer): string => `${beer.name} (${beer.year})`;
 
-export const Info: SFC<Props> = ({ beer }) => (
+export const Info: React.FC<Props> = ({ beer }) => (
   <Card
     title={formatTitle(beer)}
     meta={{ purchased: beer.purchased, stock: beer.stock, abv: `${beer.abv}%` }}

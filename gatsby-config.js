@@ -37,18 +37,12 @@ module.exports = {
   },
   plugins: [
     'gatsby-plugin-typescript',
-    'gatsby-plugin-preact',
     'gatsby-plugin-sass',
     'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-plugin-eslint',
       options: {
-        test: /\.ts$|\.tsx$/,
         stages: ['develop', 'build-javascript'],
-        options: {
-          emitWarning: true,
-          failOnError: true,
-        },
       },
     },
     {
