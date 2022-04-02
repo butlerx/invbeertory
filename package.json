@@ -31,7 +31,7 @@
     "gatsby-plugin-sass": "^4.0.2",
     "gatsby-plugin-typescript": "^3.0.0",
     "gatsby-source-google-spreadsheets": "^3.0.8",
-    "node-sass": "^5.0.0",
+    "node-sass": "^7.0.0",
     "preact": "^10.5.12",
     "preact-render-to-string": "^5.1.14",
     "react": "^17.0.1",
