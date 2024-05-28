@@ -1,5 +1,5 @@
 use crate::components::{hero::Hero, layout::Layout};
-use crate::not_found;
+use crate::pages::{home, page_not_found};
 use yew::prelude::*;
 use yew_router::prelude::*;
 
@@ -20,12 +20,8 @@ pub enum Route {
 
 fn switch(routes: Route) -> Html {
     match routes {
-        _ => html! {
-            <Layout>
-                <Hero title={"invbeertory"} message={"Simple beer inventory display"} />
-            </Layout>
-        },
-        Route::NotFound => not_found::page_not_found(),
+        _ => home(),
+        Route::NotFound => page_not_found(),
     }
 }
 

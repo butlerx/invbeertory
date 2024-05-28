@@ -1,6 +1,5 @@
 mod app;
 mod components;
-mod not_found;
 
 use app::App;
 
