@@ -4,8 +4,6 @@
 [![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg)](https://github.com/butlerx/invbeertory#readme)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/butlerx/invbeertory/graphs/commit-activity)
 [![License: MIT](https://img.shields.io/github/license/butlerx/invbeertory)](https://github.com/butlerx/invbeertory/blob/master/LICENSE)
-[![Twitter: cianbutlerx](https://img.shields.io/twitter/follow/cianbutlerx.svg?style=social)](https://twitter.com/cianbutlerx)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b8e09816-1468-4e09-854c-cdbd0fb7107d/deploy-status)](https://app.netlify.com/sites/affectionate-snyder-2e9cae/deploys)
 
 > Simple beer inventory displaty
 
@@ -13,8 +11,22 @@
 
 ## Install
 
-```sh
-yarn
+If you don't already have it installed, it's time to install Rust:
+<https://www.rust-lang.org/tools/install>. The rest of this guide assumes a
+typical Rust installation which contains both `rustup` and Cargo.
+
+To compile Rust to WASM, we need to have the `wasm32-unknown-unknown` target
+installed. If you don't already have it, install it with the following command:
+
+```bash
+rustup target add wasm32-unknown-unknown
+```
+
+Now that we have our basics covered, it's time to install the star of the show:
+[Trunk]. Simply run the following command to install it:
+
+```bash
+cargo install trunk wasm-bindgen-cli
 ```
 
 ## Usage
@@ -39,8 +51,19 @@ you can visit [here](https://support.google.com/a/answer/7378726?hl=en) and read
 After creating a service account share your sheet with edit permission with the
 given email id.
 
-```sh
-yarn build
+### Running
+
+```bash
+trunk serve
+```
+
+Rebuilds the app whenever a change is detected and runs a local server to host
+it.
+
+### Release
+
+```bash
+trunk build --release
 ```
 
 ## Author
@@ -48,7 +71,7 @@ yarn build
 👤 **Cian Butler <butlerx@notthe.cloud>**
 
 - Website: [cianbutler.ie](https://cianbutler.ie)
-- Twitter: [@cianbutlerx](https://twitter.com/cianbutlerx)
+- Mastodon: [@butlerx@mastodon.ie](https://mastodon.ie/@butlerx)
 - Github: [@butlerx](https://github.com/butlerx)
 
 ## 🤝 Contributing

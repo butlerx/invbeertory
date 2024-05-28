@@ -3,7 +3,7 @@ import * as colours from './styles/colours.module.scss';
 import { siteTitle } from './styles/layout.module.scss';
 
 const base = (i: number): string =>
-  colours[`base${['03', '04', '05', '06', '07', '08', '09', '0a', '0b', '0c', '0d', 'e0'][i]}`];
+  colours[`base${['03', '04', '05', '06', '07', '08', '09', '0a', '0b', '0c', '0d', '0e'][i]}`];
 
 interface Props {
   title: string;

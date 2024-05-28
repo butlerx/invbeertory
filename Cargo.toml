@@ -1,0 +1,13 @@
+[package]
+name = "invbeertory"
+version = "0.1.0"
+edition = "2021"
+description = "Simple beer inventory display"
+readme = "README.md"
+repository = "https://github.com/butlerx/invbeertory"
+license = "MIT"
+
+[dependencies]
+yew = { version="0.20", features=["csr"] }
+yew-router = "0.17"
+chrono = "0.4"
