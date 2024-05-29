@@ -6,7 +6,7 @@ fn base(unit: usize) -> html::Classes {
     if unit > 9 {
         // convert 10 to a, 11 to b, etc
         let unit_char = (unit - 8 + b'a' as usize) as u8 as char;
-        return classes!(format!("base0{}", unit_char));
+        return classes!(format!("base0{unit_char}"));
     }
 
     classes!(format!("base{:02}", unit + 2))

@@ -1,6 +1,6 @@
-@import './styles/variables', './styles/colours.module',
-  './styles/layout.module', './styles/search.module.scss',
-  './styles/404.module.scss';
+@import './styles/variables', './styles/colours.module', './styles/card.module',
+  './styles/deck.module', './styles/layout.module',
+  './styles/search.module.scss', './styles/404.module.scss';
 
 body {
   background-color: base('00');

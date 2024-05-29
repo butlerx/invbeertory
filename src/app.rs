@@ -1,5 +1,7 @@
-use crate::components::{hero::Hero, layout::Layout};
-use crate::pages::{home, page_not_found};
+use crate::{
+    pages::{Beer, Graphs, History, Home, NotFound, Stock},
+    storage,
+};
 use yew::prelude::*;
 use yew_router::prelude::*;
 
@@ -13,15 +15,30 @@ pub enum Route {
     History,
     #[at("/graphs")]
     Graphs,
+    #[at("/:brewery/:year/:name")]
+    Beer {
+        brewery: String,
+        year: String,
+        name: String,
+    },
     #[not_found]
     #[at("/404")]
     NotFound,
 }
 
 fn switch(routes: Route) -> Html {
+    let stock = storage::load().expect("Failed to parse CSV");
     match routes {
-        _ => home(),
-        Route::NotFound => page_not_found(),
+        Route::Home => html! {<Home />},
+        Route::Stock => html! {<Stock stock={stock}/>},
+        Route::History => html! {<History stock={stock}/>},
+        Route::Graphs => html! { <Graphs stock={stock}/> },
+        Route::Beer {
+            brewery,
+            year,
+            name,
+        } => html! {<Beer stock={stock} brewery={brewery} year={year} name={name} />},
+        Route::NotFound => html! {<NotFound />},
     }
 }
 
