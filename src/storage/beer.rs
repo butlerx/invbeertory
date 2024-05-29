@@ -17,8 +17,3 @@ pub struct Beer {
     pub barrel_type: Option<String>,
     pub brewed_with: Option<String>,
 }
-
-#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
-pub struct Stock {
-    pub beers: Vec<Beer>,
-}

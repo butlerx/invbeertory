@@ -38,34 +38,34 @@ pub fn card(props: &CardProps) -> Html {
         }
     };
 
+    let meta_html = if !meta.is_empty() {
+        html! {
+            <div class="metadata">
+                { for meta.iter().map(|(k, v)| html! {
+                    <>
+                        <span class="key">{title_case(k)}</span>
+                        { ": " }
+                        <span class="val">{ v }</span>
+                        <br/>
+                    </>
+                })}
+            </div>
+        }
+    } else {
+        html! {}
+    };
+
+    let title_html = match title {
+        Some(title) if !title.is_empty() => html! {
+            <h1 class="headline">{ title }</h1>
+        },
+        _ => html! {},
+    };
+
     html! {
         <div class="single">
-            {
-                if !meta.is_empty() {
-                    html! {
-                        <div class="metadata">
-                            { for meta.iter().map(|(k, v)| html! {
-                                <>
-                                    <span class="key">{title_case(k)}</span>
-                                    { ": " }
-                                    <span class="val">{ v }</span>
-                                    <br/>
-                                </>
-                            })}
-                        </div>
-                    }
-                } else {
-                    html! {}
-                }
-            }
-            {
-                match title {
-                    Some(title) if !title.is_empty() => html! {
-                        <h2 class="title">{ title }</h2>
-                    },
-                    _ => html! {},
-                }
-            }
+            {meta_html}
+            {title_html}
             <section class="body">{ children.clone() }</section>
         </div>
     }

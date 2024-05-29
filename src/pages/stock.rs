@@ -7,7 +7,7 @@ pub struct Props {
 }
 
 #[function_component(Stock)]
-pub fn stock(props: &Props) -> Html {
+pub fn stock(_props: &Props) -> Html {
     html! {
         <Layout >
             {"Current Stock"}

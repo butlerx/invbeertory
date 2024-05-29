@@ -25,7 +25,7 @@ pub fn beer(props: &Props) -> Html {
         <Layout title={name.to_string()}>
             <Deck>
             {
-                match storage::find_beer(&stock.beers, brewery, year, name) {
+                match stock.find_beer(brewery, year, name) {
                     Some(beer) => html! {<Info beer={beer.clone()} />},
                     None => html! {<Card><p>{"Beer not found"}</p></Card>},
                 }

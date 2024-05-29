@@ -27,7 +27,7 @@ pub enum Route {
 }
 
 fn switch(routes: Route) -> Html {
-    let stock = storage::load().expect("Failed to parse CSV");
+    let stock = storage::Stock::load().expect("Failed to parse CSV");
     match routes {
         Route::Home => html! {<Home />},
         Route::Stock => html! {<Stock stock={stock}/>},

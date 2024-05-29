@@ -7,7 +7,7 @@ pub struct Props {
 }
 
 #[function_component(History)]
-pub fn history(props: &Props) -> Html {
+pub fn history(_props: &Props) -> Html {
     html! {
         <Layout title="History">
             {"History"}

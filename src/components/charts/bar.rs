@@ -1,6 +1,5 @@
 use super::{bindings, colours::generate_unique_colors};
 use serde::{Deserialize, Serialize};
-use std::collections::HashMap;
 use web_sys::Element;
 use yew::{html, Component, Context, Html, NodeRef, Properties};
 
