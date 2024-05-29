@@ -2,12 +2,26 @@ import React from 'react';
 import ReactTable, { ReactTableDefaults } from 'react-table';
 import 'react-table/react-table.css';
 
-import { filterCaseInsensitive } from '../../utils';
 import { Card } from '../card';
 import { Deck } from '../deck';
 import { Beer } from '../../types';
 import { table } from './style.module.scss';
 import { columns } from './columns';
+
+function filterCaseInsensitive(
+  filter: { value: string; id: string; pivotId: string },
+  row: Beer,
+): boolean {
+  const content = row[filter.pivotId || filter.id];
+  if (typeof content !== 'undefined') {
+    // filter by text in the table or if it's a object, filter by key
+    return typeof content === 'object' && content !== null && content.key
+      ? String(content.key).toLowerCase().includes(filter.value.toLowerCase())
+      : String(content).toLowerCase().includes(filter.value.toLowerCase());
+  }
+  return true;
+}
+
 
 interface Props {
   beers: Beer[];
@@ -34,7 +48,3 @@ export const BeerTable: React.FC<Props> = ({ title, beers }) => (
     </Card>
   </Deck>
 );
-
-BeerTable.defaultProps = {
-  title: '',
-};

@@ -1,8 +1,7 @@
----
 options:
   max-warnings: 50
 files:
-  include: 'src/**/*.s+(a|c)ss'
+  include: './**/*.s+(a|c)ss'
 rules:
   leading-zero: 0
   no-url-domains: 0
