@@ -485,6 +485,25 @@ dependencies = [
 ]
 
 [[package]]
+name = "implicit-clone"
+version = "0.4.9"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f8a9aa791c7b5a71b636b7a68207fdebf171ddfc593d9c8506ec4cbc527b6a84"
+dependencies = [
+ "implicit-clone-derive",
+]
+
+[[package]]
+name = "implicit-clone-derive"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9311685eb9a34808bbb0608ad2fcab9ae216266beca5848613e95553ac914e3b"
+dependencies = [
+ "quote",
+ "syn 2.0.66",
+]
+
+[[package]]
 name = "indexmap"
 version = "1.9.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -501,6 +520,7 @@ dependencies = [
  "chrono",
  "csv",
  "getrandom",
+ "implicit-clone 0.4.9",
  "js-sys",
  "rand",
  "serde",
@@ -1124,7 +1144,7 @@ dependencies = [
  "console_error_panic_hook",
  "futures",
  "gloo",
- "implicit-clone",
+ "implicit-clone 0.3.9",
  "indexmap",
  "js-sys",
  "prokio",

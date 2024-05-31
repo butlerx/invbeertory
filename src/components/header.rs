@@ -10,7 +10,7 @@ pub fn header() -> Html {
         <header>
             <div class={classes!("container", "clearfix")}>
                 <Link<Route> to={Route::Home} classes={classes!(path_class)}>{ "invbeertory" } </Link<Route>>
-                <span class={classes!("caret")}>{ "#_" }</span>
+                <span class={classes!("caret")}>{ " #_" }</span>
                 <div class={classes!("right")}>
                     <Link<Route> to={Route::Stock} classes={classes!(path_class)}>{"Current Stock"}</Link<Route>>
                     {" | "}

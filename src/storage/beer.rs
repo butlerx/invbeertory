@@ -1,3 +1,4 @@
+use implicit_clone::ImplicitClone;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
@@ -17,3 +18,11 @@ pub struct Beer {
     pub barrel_type: Option<String>,
     pub brewed_with: Option<String>,
 }
+
+impl std::fmt::Display for Beer {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{} - {} ({}%)", self.name, self.year, self.abv)
+    }
+}
+
+impl ImplicitClone for Beer {}

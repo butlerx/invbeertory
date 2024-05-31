@@ -23,3 +23,4 @@ wasm-bindgen-futures = "0.4"
 web-sys = { version = "0.3", features = ["HtmlDivElement", "SvgsvgElement"] }
 yew = { version="0.20", features=["csr"] }
 yew-router = "0.17"
+implicit-clone = "0.4.9"

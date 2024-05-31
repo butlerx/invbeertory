@@ -16,8 +16,7 @@ impl Stock {
         Ok(Self { beers: beers? })
     }
 
-    pub fn find_beer<'a>(&'a self, brewery: &str, year: &str, name: &str) -> Option<&'a Beer> {
-        let year = year.parse::<i16>().ok()?;
+    pub fn find_beer<'a>(&'a self, brewery: &str, year: i16, name: &str) -> Option<&'a Beer> {
         self.beers
             .iter()
             .find(|beer| beer.brewery == brewery && beer.year == year && beer.name == name)
@@ -146,5 +145,22 @@ impl Stock {
         }
 
         Data { labels, datasets }
+    }
+
+    pub fn search(&self, query: &str) -> Vec<&Beer> {
+        self.beers
+            .iter()
+            .filter(|beer| {
+                beer.brewery.contains(query)
+                    || beer.name.contains(query)
+                    || beer.style.contains(query)
+                    || beer.year.to_string().contains(query)
+                    || beer.abv.to_string().contains(query)
+                    || beer
+                        .collaborators
+                        .as_ref()
+                        .map_or(false, |c| c.contains(query))
+            })
+            .collect()
     }
 }

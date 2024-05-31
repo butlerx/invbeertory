@@ -18,7 +18,7 @@ pub enum Route {
     #[at("/:brewery/:year/:name")]
     Beer {
         brewery: String,
-        year: String,
+        year: i16,
         name: String,
     },
     #[not_found]
@@ -29,7 +29,7 @@ pub enum Route {
 fn switch(routes: Route) -> Html {
     let stock = storage::Stock::load().expect("Failed to parse CSV");
     match routes {
-        Route::Home => html! {<Home />},
+        Route::Home => html! {<Home stock={stock} />},
         Route::Stock => html! {<Stock stock={stock}/>},
         Route::History => html! {<History stock={stock}/>},
         Route::Graphs => html! { <Graphs stock={stock}/> },
