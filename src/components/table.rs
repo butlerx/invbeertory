@@ -113,10 +113,21 @@ pub fn data_grid(props: &Props) -> Html {
                 })
             };
 
+            let header_classes = match *sort_by {
+                Some(current_sort) if current_sort == index => {
+                    if *ascending {
+                        classes!("col-title", "sort-asc")
+                    } else {
+                        classes!("col-title", "sort-desc")
+                    }
+                }
+                _ => classes!("col-title"),
+            };
+
             html! {
                 <div class={classes!("grid-header-cell")}>
                     <div
-                        class={classes!("col-title")}
+                        class={header_classes}
                         onclick={on_click}
                     >{formatting::capitalise(header)}</div>
                     <input
