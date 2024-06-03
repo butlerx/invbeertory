@@ -7,15 +7,15 @@ use yew::{
 };
 use yew_router::prelude::Link;
 
-const HEADERS: [&str; 8] = [
-    "name",
-    "brewery",
-    "year",
-    "abv",
-    "style",
-    "size",
-    "stock",
-    "purchased",
+const HEADERS: [(&str, &str); 8] = [
+    ("name", "search"),
+    ("brewery", "search"),
+    ("year", "number"),
+    ("abv", "number"),
+    ("style", "search"),
+    ("size", "number"),
+    ("stock", "number"),
+    ("purchased", "number"),
 ];
 
 #[derive(Properties, Clone, PartialEq)]
@@ -83,35 +83,39 @@ pub fn data_grid(props: &Props) -> Html {
         })
     };
 
-    let header_cells = HEADERS.iter().enumerate().map(|(index, &header)| {
-        let on_click = {
-            let on_sort = on_sort.clone();
-            Callback::from(move |_| on_sort.emit((index, header)))
-        };
+    let header_cells = HEADERS
+        .iter()
+        .enumerate()
+        .map(|(index, &(header, input_type))| {
+            let on_click = {
+                let on_sort = on_sort.clone();
+                Callback::from(move |_| on_sort.emit((index, header)))
+            };
 
-        let on_input = {
-            let on_filter_change = on_filter_change.clone();
-            Callback::from(move |e: InputEvent| {
-                let input: HtmlInputElement = e.target_unchecked_into();
-                on_filter_change.emit((index, header, input.value()))
-            })
-        };
+            let on_input = {
+                let on_filter_change = on_filter_change.clone();
+                Callback::from(move |e: InputEvent| {
+                    let input: HtmlInputElement = e.target_unchecked_into();
+                    on_filter_change.emit((index, header, input.value()))
+                })
+            };
 
-        html! {
-            <div class={classes!("grid-header-cell")}>
-                <div
-                    class={classes!("col-title")}
-                    onclick={on_click}
-                >{formatting::capitalise(header)}</div>
-                <input
-                    type="text"
-                    name={format!("filter-{}", header)}
-                    aria-label={format!("Filter by {}", header)}
-                    oninput={on_input}
-                />
-            </div>
-        }
-    });
+            html! {
+                <div class={classes!("grid-header-cell")}>
+                    <div
+                        class={classes!("col-title")}
+                        onclick={on_click}
+                    >{formatting::capitalise(header)}</div>
+                    <input
+                        type={input_type}
+                        name={format!("filter-{}", header)}
+                        aria-label={format!("Filter by {}", header)}
+                        oninput={on_input}
+                        min="0"
+                    />
+                </div>
+            }
+        });
 
     let rows = data.iter().map(|beer| {
         html! {
