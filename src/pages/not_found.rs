@@ -2,14 +2,17 @@ use crate::{
     app::Route,
     components::{Card, Deck, Layout},
 };
+use implicit_clone::unsync::IString;
 use yew::{classes, function_component, html, Html};
 use yew_router::prelude::Link;
 
 #[function_component(NotFound)]
 pub fn page_not_found() -> Html {
+    let title = IString::from("404: Not found");
+
     html! {
-        <Layout title="404: Not found" >
-            <div class={classes!("pageNotFound")}>
+        <Layout title={title}>
+            <div class={classes!("page-not-found")}>
                 <h1>
                     <span class={classes!("base05")}>{"["}</span>
                     <span class={classes!("base08")}>{"4"}</span>

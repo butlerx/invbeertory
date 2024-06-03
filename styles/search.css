@@ -1,0 +1,19 @@
+.search-results {
+  font-size: 1.5rem;
+  list-style: none;
+}
+
+.search-results a {
+  text-decoration: none;
+}
+
+.search-box {
+  border: None;
+  border-radius: 2rem;
+  font-size: 1.5rem;
+  height: 3rem;
+  margin-top: 0.5rem;
+  padding-left: 1.5rem;
+  transition: background 0.55s ease;
+  width: 100%;
+}

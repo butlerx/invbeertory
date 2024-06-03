@@ -1,11 +1,12 @@
 use crate::storage::Beer;
+use implicit_clone::unsync::IString;
 
-pub fn format(beer: &Beer) -> String {
+pub fn format(beer: &Beer) -> IString {
     let Beer { brewery, .. } = beer;
     match &beer.collaborators {
         Some(collaborators) => {
-            format!("{brewery} in collaboration with {collaborators}").to_string()
+            IString::from(format!("{brewery} in collaboration with {collaborators}"))
         }
-        None => brewery.to_string(),
+        None => brewery.clone(),
     }
 }

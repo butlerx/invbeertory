@@ -1,36 +1,38 @@
 use crate::storage::Beer;
+use implicit_clone::unsync::IString;
 
-fn barrel_aged(beer: &Beer) -> String {
+fn barrel_aged(beer: &Beer) -> IString {
     if beer.barrel_aged {
-        "Barrel Aged".to_string()
+        IString::from("Barrel Aged")
     } else {
-        String::new()
+        IString::default()
     }
 }
 
-fn brewed_in(beer: &Beer) -> String {
+fn brewed_in(beer: &Beer) -> IString {
     match &beer.barrel_type {
-        Some(barrel_type) => format!("in {barrel_type} Barrels"),
-        None => String::new(),
+        Some(barrel_type) => IString::from(format!("in {barrel_type} Barrels")),
+        None => IString::default(),
     }
 }
 
-fn brewed_with(beer: &Beer) -> String {
+fn brewed_with(beer: &Beer) -> IString {
     match &beer.brewed_with {
-        Some(brewed_with) => format!("with {brewed_with}"),
-        None => String::new(),
+        Some(brewed_with) => IString::from(format!("with {brewed_with}")),
+        None => IString::default(),
     }
 }
 
-pub fn format(beer: &Beer) -> String {
-    format!(
-        "{} {} {} {}",
-        barrel_aged(beer),
-        beer.style,
-        brewed_with(beer),
-        brewed_in(beer)
+pub fn format(beer: &Beer) -> IString {
+    IString::from(
+        format!(
+            "{} {} {} {}",
+            barrel_aged(beer),
+            beer.style,
+            brewed_with(beer),
+            brewed_in(beer)
+        )
+        .trim()
+        .replace("  ", " "),
     )
-    .trim()
-    .replace("  ", " ") // Clean up any double spaces
-    .to_string()
 }

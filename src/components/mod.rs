@@ -1,13 +1,11 @@
 pub mod charts;
 mod deck;
 mod header;
-mod hero;
-mod info;
 mod layout;
 mod search;
+mod table;
 
 pub use deck::{Card, Deck};
-pub use hero::Hero;
-pub use info::Info;
 pub use layout::Layout;
 pub use search::Search;
+pub use table::DataGrid;

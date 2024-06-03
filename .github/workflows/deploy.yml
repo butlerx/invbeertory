@@ -1,0 +1,28 @@
+name: Deploy Site to Cloudflare Pages
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          profile: minimal
+          override: true
+      - run: rustup target add wasm32-unknown-unknown
+      - name: Install trunk
+        run: cargo install trunk wasm-bindgen-cli
+      - name: Build Yew project
+        run: trunk build --release
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: edfb77a2962ab577b66fb2e9de9b66d7
+          projectName: invbeertory
+          directory: dist

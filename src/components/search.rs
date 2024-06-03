@@ -1,5 +1,7 @@
-use crate::app::Route;
-use crate::storage::{Beer, Stock};
+use crate::{
+    app::Route,
+    storage::{Beer, Stock},
+};
 use implicit_clone::unsync::{IArray, IString};
 use web_sys::HtmlInputElement;
 use yew::{
@@ -29,32 +31,28 @@ pub fn search(props: &Props) -> Html {
             let query_value = input.value();
             query.set(IString::from(query_value.clone()));
 
-            let search_results = stock
-                .search(&query_value)
-                .into_iter()
-                .map(|beer| beer.clone())
-                .collect::<IArray<_>>();
+            let search_results = stock.search(&query_value).iter().collect::<IArray<_>>();
             results.set(search_results);
         })
     };
 
     html! {
-        <div class="searchStyles">
+        <div>
             <input
                 type="text"
                 name="search"
                 aria-label="Search"
                 placeholder="What beer you looking for?"
-                class="searchBox"
+                class="search-box"
                 oninput={oninput}
             />
-            <ul class="searchResults">
+            <ul class="search-results">
                 { for beers.iter().map(|beer| html! {
                     <li>
                         <Link<Route> to={Route::Beer{
-                            brewery: beer.brewery.clone(),
-                            year: beer.year.clone(),
-                            name: beer.name.clone(),
+                            brewery: beer.brewery.to_lowercase().replace(' ', "_").into(),
+                            year: beer.year,
+                            name: beer.name.to_lowercase().replace(' ', "_").into(),
                         }} classes={classes!("path")}>{beer}</Link<Route>>
                     </li>
                 })}
