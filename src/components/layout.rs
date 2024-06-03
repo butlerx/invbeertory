@@ -1,6 +1,6 @@
-use crate::components::header::Header;
+use crate::{components::header::Header, formatting};
 use chrono::Datelike;
-
+use implicit_clone::unsync::IString;
 use web_sys::window;
 use yew::{classes, function_component, html, Children, Html, Properties};
 
@@ -26,12 +26,12 @@ fn get_month(month_index: u32) -> &'static str {
     }
 }
 
-fn update_title(title: &Option<String>) {
+fn update_title(title: &Option<IString>) {
     if let Some(window) = window() {
         if let Some(document) = window.document() {
-            let site_title = capitalise(TITLE);
+            let site_title = formatting::capitalise(TITLE);
             let title = if let Some(title) = &title {
-                format!("{title} | {site_title}")
+                IString::from(format!("{title} | {site_title}"))
             } else {
                 site_title
             };
@@ -40,14 +40,15 @@ fn update_title(title: &Option<String>) {
     }
 }
 
-fn set_meta_tags(title: &Option<String>) {
+fn set_meta_tags(title: &Option<IString>) {
     let window = window().expect("no global `window` exists");
     let document = window.document().expect("should have a document on window");
     let head = document.head().expect("should have a head in document");
 
+    let site_title = formatting::capitalise(TITLE);
     let title = match title {
-        Some(t) => t.to_string(),
-        None => capitalise(TITLE),
+        Some(t) => t,
+        None => &site_title,
     };
 
     let meta_tags = [
@@ -67,16 +68,10 @@ fn set_meta_tags(title: &Option<String>) {
     }
 }
 
-fn capitalise(s: &str) -> String {
-    let mut c = s.chars();
-    let f = c.next().unwrap();
-    f.to_uppercase().collect::<String>() + c.as_str()
-}
-
 #[derive(Properties, PartialEq)]
 pub struct Props {
     pub children: Children,
-    pub title: Option<String>,
+    pub title: Option<IString>,
 }
 
 #[function_component(Layout)]

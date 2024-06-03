@@ -1,3 +1,4 @@
+use implicit_clone::unsync::{IArray, IString};
 use serde::{Deserialize, Serialize};
 use serde_repr::{Deserialize_repr, Serialize_repr};
 use wasm_bindgen::{prelude::*, JsValue};
@@ -23,12 +24,12 @@ extern "C" {
 #[derive(Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Options {
-    pub background_color: String,
+    pub background_color: IString,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub y_tick_count: Option<i32>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub legend_position: Option<PositionType>,
-    pub data_colors: Vec<String>,
+    pub data_colors: IArray<IString>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub inner_radius: Option<f64>,
 }
@@ -38,9 +39,9 @@ pub struct Options {
 pub struct ChartOptions<T: Serialize> {
     pub title: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub x_label: Option<String>,
+    pub x_label: Option<IString>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub y_label: Option<String>,
+    pub y_label: Option<IString>,
     pub data: T,
     pub options: Options,
 }

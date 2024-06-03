@@ -1,4 +1,8 @@
-use super::{bindings, colours::generate_unique_colors};
+use super::{bindings, colours};
+use implicit_clone::{
+    unsync::{IArray, IString},
+    ImplicitClone,
+};
 use serde::{Deserialize, Serialize};
 use web_sys::Element;
 use yew::{html, Component, Context, Html, NodeRef, Properties};
@@ -6,22 +10,24 @@ use yew::{html, Component, Context, Html, NodeRef, Properties};
 #[derive(Serialize, Deserialize, Clone, PartialEq, Debug)]
 pub struct Data {
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub labels: Option<Vec<String>>,
-    pub datasets: Vec<Dataset>,
+    pub labels: Option<IArray<IString>>,
+    pub datasets: IArray<Dataset>,
 }
+impl ImplicitClone for Data {}
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Debug)]
 pub struct Dataset {
-    pub data: Vec<i64>,
+    pub data: IArray<i64>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub labels: Option<String>,
+    pub labels: Option<IString>,
 }
+impl ImplicitClone for Dataset {}
 
 #[derive(Properties, PartialEq)]
 pub struct Props {
     pub data: Data,
-    pub x_label: Option<String>,
-    pub y_label: Option<String>,
+    pub x_label: Option<IString>,
+    pub y_label: Option<IString>,
     pub title: Option<String>,
 }
 
@@ -60,11 +66,11 @@ impl Component for Radar {
             y_label: y_label.clone(),
             data: data.clone(),
             options: bindings::Options {
-                background_color: "#f2f0ec".to_string(),
+                background_color: colours::default_background(),
                 legend_position: Some(bindings::PositionType::UpRight),
                 y_tick_count: None,
                 inner_radius: None,
-                data_colors: generate_unique_colors(255),
+                data_colors: colours::generate_unique_colors(255),
             },
         };
 

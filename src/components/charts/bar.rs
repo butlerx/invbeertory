@@ -1,24 +1,32 @@
-use super::{bindings, colours::generate_unique_colors};
+use super::{bindings, colours};
+use implicit_clone::{
+    unsync::{IArray, IString},
+    ImplicitClone,
+};
 use serde::{Deserialize, Serialize};
 use web_sys::Element;
 use yew::{html, Component, Context, Html, NodeRef, Properties};
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Debug)]
 struct Data {
-    pub datasets: Vec<Dataset>,
-    pub labels: Vec<String>,
+    pub datasets: IArray<Dataset>,
+    pub labels: IArray<IString>,
 }
+
+impl ImplicitClone for Data {}
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Debug)]
 struct Dataset {
-    pub data: Vec<i64>,
+    pub data: IArray<i64>,
 }
+
+impl ImplicitClone for Dataset {}
 
 #[derive(Properties, PartialEq)]
 pub struct Props {
-    pub data: Vec<(String, i64)>,
-    pub x_label: Option<String>,
-    pub y_label: Option<String>,
+    pub data: IArray<(IString, i64)>,
+    pub x_label: Option<IString>,
+    pub y_label: Option<IString>,
     pub title: Option<String>,
 }
 
@@ -58,15 +66,16 @@ impl Component for Bar {
             data: Data {
                 labels: data.iter().map(|(label, _)| label.clone()).collect(),
                 datasets: vec![Dataset {
-                    data: data.iter().map(|(_, value)| *value).collect(),
-                }],
+                    data: data.iter().map(|(_, value)| value).collect(),
+                }]
+                .into(),
             },
             options: bindings::Options {
-                background_color: "#f2f0ec".to_string(),
+                background_color: colours::default_background(),
                 y_tick_count: Some(5),
                 legend_position: None,
                 inner_radius: None,
-                data_colors: generate_unique_colors(255),
+                data_colors: colours::generate_unique_colors(255),
             },
         };
 

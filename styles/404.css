@@ -1,0 +1,23 @@
+.page-not-found h1 {
+  font-size: 5em;
+  text-align: center;
+}
+
+.page-not-found h2 {
+  margin-bottom: 4rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  color: var(--main-base-04);
+  font-size: 3em;
+  text-align: center;
+}
+
+@media (max-width: var(--main-max-width)) {
+  .page-not-found hh1 {
+    font-size: 3em;
+  }
+  .page-not-found hh2 {
+    font-size: 2em;
+  }
+}

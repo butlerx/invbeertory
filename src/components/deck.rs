@@ -1,13 +1,14 @@
-use std::collections::HashMap;
+use crate::formatting;
+use implicit_clone::unsync::{IMap, IString};
 use yew::{function_component, html, Children, Html, Properties};
 
 #[derive(Properties, PartialEq)]
-pub struct DeckProps {
+pub struct Props {
     pub children: Children,
 }
 
 #[function_component(Deck)]
-pub fn deck(props: &DeckProps) -> Html {
+pub fn deck(props: &Props) -> Html {
     html! {
         <div class="deck">{ props.children.clone() }</div>
     }
@@ -16,9 +17,9 @@ pub fn deck(props: &DeckProps) -> Html {
 #[derive(Properties, PartialEq)]
 pub struct CardProps {
     #[prop_or_default]
-    pub title: Option<String>,
+    pub title: Option<IString>,
     #[prop_or_default]
-    pub meta: HashMap<String, String>,
+    pub meta: IMap<IString, IString>,
     pub children: Children,
 }
 
@@ -30,20 +31,14 @@ pub fn card(props: &CardProps) -> Html {
         children,
     } = props;
 
-    let title_case = |word: &str| -> String {
-        let mut chars = word.chars();
-        match chars.next() {
-            None => String::new(),
-            Some(f) => f.to_uppercase().collect::<String>() + chars.as_str(),
-        }
-    };
-
-    let meta_html = if !meta.is_empty() {
+    let meta_html = if meta.is_empty() {
+        html! {}
+    } else {
         html! {
             <div class="metadata">
                 { for meta.iter().map(|(k, v)| html! {
                     <>
-                        <span class="key">{title_case(k)}</span>
+                        <span class="key">{formatting::capitalise(&k)}</span>
                         { ": " }
                         <span class="val">{ v }</span>
                         <br/>
@@ -51,8 +46,6 @@ pub fn card(props: &CardProps) -> Html {
                 })}
             </div>
         }
-    } else {
-        html! {}
     };
 
     let title_html = match title {

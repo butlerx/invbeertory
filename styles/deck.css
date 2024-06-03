@@ -1,0 +1,139 @@
+.deck {
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.deck .headline {
+  color: var(--main-base-0a);
+  font-size: 3em;
+}
+
+.single {
+  margin-bottom: 4rem;
+}
+.single h1.headline {
+  color: var(--main-base-0a);
+  font-size: 2em;
+  margin-top: 0;
+}
+.single h2.headline {
+  color: var(--main-base-0d);
+  margin-top: 0;
+}
+.single h2.headline a {
+  color: var(--main-base-0d);
+  margin-top: 0;
+}
+.single .metadata {
+  font-size: 0.9em;
+  margin-bottom: 1rem;
+  text-align: right;
+}
+.single .metadata .key {
+  color: var(--main-base-03);
+}
+.single .metadata .val {
+  color: var(--main-base-0e);
+}
+.single .metadata .val a {
+  color: var(--main-base-0e);
+}
+.single section {
+  background-color: var(--main-base-07);
+  color: var(--main-base-00);
+  margin-bottom: 3rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  padding-bottom: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 2rem;
+}
+
+@media (max-width: var(--main-max-width)) {
+  .single section {
+    padding-bottom: 2rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-top: 2rem;
+  }
+}
+
+.single section h1 {
+  color: var(--main-base-0d);
+}
+.single section h2 {
+  color: var(--main-base-0b);
+}
+.single section h3 {
+  color: var(--main-base-09);
+}
+.single section h4 {
+  color: var(--main-base-08);
+}
+.single section h5 {
+  color: var(--main-base-02);
+}
+.single section h6 {
+  color: var(--main-base-03);
+}
+.single section a {
+  color: var(--main-base-0f);
+}
+@media (max-width: var(--main-max-width)) {
+  .single section {
+    padding-bottom: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 2rem;
+  }
+}
+.single section.summary a {
+  color: var(--main-base-0f);
+}
+.single * {
+  max-width: 100%;
+}
+
+.single pre {
+  margin-bottom: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  border-radius: 3px;
+  overflow-x: auto;
+  padding: 2rem;
+}
+.single blockquote {
+  margin-bottom: auto;
+  margin-left: 2rem;
+  margin-right: 3rem;
+  margin-top: auto;
+  border-left: 5px solid var(--main-base-0c);
+  padding-left: 1rem;
+}
+.single hr {
+  border: 0;
+  border-bottom: 1px solid var(--main-base-04);
+}
+@media (max-width: var(--main-max-width)) {
+  .single .meta {
+    padding-bottom: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 2rem;
+  }
+  .single h1.headline {
+    padding-bottom: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 2rem;
+  }
+  .single section.body {
+    padding-bottom: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 2rem;
+  }
+}

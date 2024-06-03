@@ -1,0 +1,87 @@
+.base01 {
+  color: var(--main-base-01);
+}
+
+.base02 {
+  color: var(--main-base-02);
+}
+.base03 {
+  color: var(--main-base-03);
+}
+.base04 {
+  color: var(--main-base-04);
+}
+.base05 {
+  color: var(--main-base-05);
+}
+.base06 {
+  color: var(--main-base-06);
+}
+.base07 {
+  color: var(--main-base-07);
+}
+.base08 {
+  color: var(--main-base-08);
+}
+.base09 {
+  color: var(--main-base-09);
+}
+.base0a {
+  color: var(--main-base-0a);
+}
+.base0b {
+  color: var(--main-base-0b);
+}
+.base0c {
+  color: var(--main-base-0c);
+}
+
+.base0d {
+  color: var(--main-base-0d);
+}
+.base0e {
+  color: var(--main-base-0e);
+}
+.base0f {
+  color: var(--main-base-0f);
+}
+
+.herologo {
+  background: linear-gradient(
+    to right,
+    var(--main-base-00),
+    var(--main-base-00) 6.25%,
+    var(--main-base-01) 6.25%,
+    var(--main-base-01) 12.5%,
+    var(--main-base-02) 12.5%,
+    var(--main-base-02) 18.75%,
+    var(--main-base-03) 18.75%,
+    var(--main-base-03) 25%,
+    var(--main-base-04) 25%,
+    var(--main-base-04) 31.25%,
+    var(--main-base-05) 31.25%,
+    var(--main-base-05) 37.5%,
+    var(--main-base-06) 37.5%,
+    var(--main-base-06) 43.75%,
+    var(--main-base-07) 43.75%,
+    var(--main-base-07) 50%,
+    var(--main-base-08) 50%,
+    var(--main-base-08) 56.25%,
+    var(--main-base-09) 56.25%,
+    var(--main-base-09) 62.5%,
+    var(--main-base-0a) 62.5%,
+    var(--main-base-0a) 68.75%,
+    var(--main-base-0b) 68.75%,
+    var(--main-base-0b) 75%,
+    var(--main-base-0c) 75%,
+    var(--main-base-0c) 81.25%,
+    var(--main-base-0d) 81.25%,
+    var(--main-base-0d) 87.5%,
+    var(--main-base-0e) 87.5%,
+    var(--main-base-0e) 93.75%,
+    var(--main-base-0f) 93.75%,
+    var(--main-base-0f) 100%
+  );
+  height: 3em;
+  margin: 1em 0;
+}

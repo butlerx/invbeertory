@@ -2,6 +2,7 @@ use crate::{
     pages::{Beer, Graphs, History, Home, NotFound, Stock},
     storage,
 };
+use implicit_clone::unsync::IString;
 use yew::prelude::*;
 use yew_router::prelude::*;
 
@@ -17,9 +18,9 @@ pub enum Route {
     Graphs,
     #[at("/:brewery/:year/:name")]
     Beer {
-        brewery: String,
+        brewery: IString,
         year: i16,
-        name: String,
+        name: IString,
     },
     #[not_found]
     #[at("/404")]

@@ -1,4 +1,8 @@
-use crate::{components::Layout, storage};
+use crate::{
+    components::{Card, DataGrid, Deck, Layout},
+    storage,
+};
+use implicit_clone::unsync::IString;
 use yew::{function_component, html, Html, Properties};
 
 #[derive(Properties, Clone, PartialEq)]
@@ -7,11 +11,16 @@ pub struct Props {
 }
 
 #[function_component(History)]
-pub fn history(_props: &Props) -> Html {
+pub fn history(props: &Props) -> Html {
+    let Props { stock } = props;
+    let title = IString::from("History");
     html! {
-        <Layout title="History">
-            {"History"}
-            // <BeerTable title="History" beers={beers} />
+        <Layout title={title.clone()}>
+            <Deck>
+                <Card title={title.clone()}>
+                    <DataGrid data={stock.beers.clone()} />
+                </Card>
+            </Deck>
         </Layout>
     }
 }
