@@ -28,19 +28,36 @@ impl std::fmt::Display for Beer {
 impl ImplicitClone for Beer {}
 
 impl Beer {
-    pub fn filter_check(&self, field: usize, filter: &str) -> bool {
+    pub fn filter_check(&self, field: &str, filter: &str) -> bool {
         match field {
-            0 => self.name.to_string(),
-            1 => self.brewery.to_string(),
-            2 => self.year.to_string(),
-            3 => self.abv.to_string(),
-            4 => self.style.to_string(),
-            5 => self.size.to_string(),
-            6 => self.stock.to_string(),
-            7 => self.purchased.to_string(),
+            "name" => self.name.to_string(),
+            "brewery" => self.brewery.to_string(),
+            "year" => self.year.to_string(),
+            "abv" => self.abv.to_string(),
+            "style" => self.style.to_string(),
+            "size" => self.size.to_string(),
+            "stock" => self.stock.to_string(),
+            "purchased" => self.purchased.to_string(),
             _ => return false,
         }
         .to_lowercase()
         .contains(filter)
+    }
+
+    pub fn compare_field(&self, other: &Self, field: &str) -> std::cmp::Ordering {
+        match field {
+            "name" => self.name.cmp(&other.name),
+            "brewery" => self.brewery.cmp(&other.brewery),
+            "year" => self.year.cmp(&other.year),
+            "abv" => self
+                .abv
+                .partial_cmp(&other.abv)
+                .unwrap_or(std::cmp::Ordering::Equal),
+            "style" => self.style.cmp(&other.style),
+            "size" => self.size.cmp(&other.size),
+            "stock" => self.stock.cmp(&other.stock),
+            "purchased" => self.purchased.cmp(&other.purchased),
+            _ => std::cmp::Ordering::Equal,
+        }
     }
 }

@@ -8,14 +8,14 @@ use yew::{
 use yew_router::prelude::Link;
 
 const HEADERS: [&str; 8] = [
-    "Name",
-    "Brewery",
-    "Year",
-    "ABV",
-    "Style",
-    "Size",
-    "Stock",
-    "Purchased",
+    "name",
+    "brewery",
+    "year",
+    "abv",
+    "style",
+    "size",
+    "stock",
+    "purchased",
 ];
 
 #[derive(Properties, Clone, PartialEq)]
@@ -35,7 +35,7 @@ pub fn data_grid(props: &Props) -> Html {
         let sort_by = sort_by.clone();
         let ascending = ascending.clone();
         let data = data.clone();
-        Callback::from(move |index: usize| {
+        Callback::from(move |(index, header): (usize, &str)| {
             let current_sort = *sort_by;
             let mut new_ascending = true;
             if let Some(current_sort) = current_sort {
@@ -46,22 +46,22 @@ pub fn data_grid(props: &Props) -> Html {
             sort_by.set(Some(index));
             ascending.set(new_ascending);
 
-            let sorted_data = data.to_vec();
-            // sorted_data.sort_by(|a, b| {
-            //     if new_ascending {
-            //         a[index].cmp(&b[index])
-            //     } else {
-            //         b[index].cmp(&a[index])
-            //     }
-            // });
+            let mut sorted_data = data.to_vec();
+            sorted_data.sort_by(|a, b| {
+                if new_ascending {
+                    a.compare_field(b, header)
+                } else {
+                    b.compare_field(a, header)
+                }
+            });
             data.set(sorted_data.into());
         })
     };
 
-    let _on_filter_change = {
+    let on_filter_change = {
         let data = data.clone();
         let filter_inputs = filter_inputs.clone();
-        Callback::from(move |(index, value): (usize, String)| {
+        Callback::from(move |(index, header, value): (usize, &str, String)| {
             let mut new_filters = filter_inputs.to_vec();
             new_filters[index] = value.into();
             filter_inputs.set(new_filters.clone().into());
@@ -71,37 +71,44 @@ pub fn data_grid(props: &Props) -> Html {
                 .map(|f| f.to_lowercase())
                 .collect::<Vec<_>>();
 
-            let filtered_data = data
+            let new_filtered_data = data
                 .iter()
                 .filter(|beer| {
                     lower_filters
                         .iter()
-                        .enumerate()
-                        .all(|(i, filter)| filter.is_empty() || beer.filter_check(i, filter))
+                        .all(|filter| filter.is_empty() || beer.filter_check(header, filter))
                 })
                 .collect::<IArray<_>>();
-            data.set(filtered_data);
+            data.set(new_filtered_data);
         })
     };
 
-    let header_cells = HEADERS.iter().enumerate().map(|(index, header)| {
+    let header_cells = HEADERS.iter().enumerate().map(|(index, &header)| {
         let on_click = {
             let on_sort = on_sort.clone();
-            Callback::from(move |_| on_sort.emit(index))
+            Callback::from(move |_| on_sort.emit((index, header)))
         };
 
         let on_input = {
-            //let on_filter_change = on_filter_change.clone();
+            let on_filter_change = on_filter_change.clone();
             Callback::from(move |e: InputEvent| {
-                let _input: HtmlInputElement = e.target_unchecked_into();
-                //on_filter_change.emit((index, input.value()))
+                let input: HtmlInputElement = e.target_unchecked_into();
+                on_filter_change.emit((index, header, input.value()))
             })
         };
 
         html! {
             <div class={classes!("grid-header-cell")}>
-                <div class={classes!("col-title")} onclick={on_click}>{header}</div>
-                <input type="text" oninput={on_input} />
+                <div
+                    class={classes!("col-title")}
+                    onclick={on_click}
+                >{formatting::capitalise(header)}</div>
+                <input
+                    type="text"
+                    name={format!("filter-{}", header)}
+                    aria-label={format!("Filter by {}", header)}
+                    oninput={on_input}
+                />
             </div>
         }
     });
