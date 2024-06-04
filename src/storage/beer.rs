@@ -61,3 +61,95 @@ impl Beer {
         }
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_filter_check() {
+        let beer = Beer {
+            name: IString::from("Test Beer"),
+            brewery: IString::from("Test Brewery"),
+            year: 2021,
+            abv: 5.0,
+            style: IString::from("Test Style"),
+            size: 12,
+            drunk: false,
+            stock: 6,
+            purchased: 0,
+            ibu: None,
+            collaborators: None,
+            barrel_aged: false,
+            barrel_type: None,
+            brewed_with: None,
+        };
+        // test lowercase partial match
+        assert_eq!(beer.filter_check("name", "test"), true);
+        // test lowercase full match
+        assert_eq!(beer.filter_check("name", "test beer"), true);
+        // test uppercase full match
+        assert_eq!(beer.filter_check("name", "Test Beer"), true);
+        // test uppercase partial match
+        assert_eq!(beer.filter_check("name", "Beer"), true);
+        // test number partial match
+        assert_eq!(ber.filter_check("year", "21"), true);
+        // test number full match
+        assert_eq!(ber.filter_check("year", "2021"), true);
+        // test unmatching field
+        assert_eq!(beer.filter_check("ibu", "5"), false);
+    }
+
+    #[test]
+    fn test_compare_field() {
+        let beer_a = Beer {
+            name: IString::from("Test Beer A"),
+            brewery: IString::from("Test Brewery A"),
+            year: 2021,
+            abv: 5.0,
+            style: IString::from("Test Style"),
+            size: 12,
+            drunk: false,
+            stock: 6,
+            purchased: 0,
+            ibu: None,
+            collaborators: None,
+            barrel_aged: false,
+            barrel_type: None,
+            brewed_with: None,
+        };
+
+        let beer_b = Beer {
+            name: IString::from("Test Beer B"),
+            brewery: IString::from("Test Brewery A"),
+            year: 2021,
+            abv: 4.5,
+            style: IString::from("Test Style"),
+            size: 12,
+            drunk: false,
+            stock: 6,
+            purchased: 0,
+            ibu: None,
+            collaborators: None,
+            barrel_aged: false,
+            barrel_type: None,
+            brewed_with: None,
+        };
+
+        // test string comparison
+        assert_eq!(
+            beer_a.compare_field(&beer_b, "name"),
+            std::cmp::Ordering::Less
+        );
+        // test number comparison
+        assert_eq!(
+            beer_a.compare_field(&beer_b, "year"),
+            std::cmp::Ordering::Equal
+        );
+        // test float comparison
+        assert_eq!(
+            beer_a.compare_field(&beer_b, "abv"),
+            std::cmp::Ordering::Equal
+        );
+    }
+}
