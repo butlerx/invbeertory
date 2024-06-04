@@ -167,15 +167,12 @@ impl Stock {
         self.beers
             .iter()
             .filter(|beer| {
-                beer.brewery.contains(query)
-                    || beer.name.contains(query)
-                    || beer.style.contains(query)
-                    || beer.year.to_string().contains(query)
-                    || beer.abv.to_string().contains(query)
-                    || beer
-                        .collaborators
-                        .as_ref()
-                        .map_or(false, |c| c.contains(query))
+                beer.filter_check("name", query)
+                    || beer.filter_check("brewery", query)
+                    || beer.filter_check("style", query)
+                    || beer.filter_check("year", query)
+                    || beer.filter_check("abv", query)
+                    || beer.filter_check("collaborators", query)
             })
             .collect()
     }

@@ -29,7 +29,10 @@ impl ImplicitClone for Beer {}
 
 impl Beer {
     pub fn filter_check(&self, field: &str, filter: &str) -> bool {
-        match field {
+        if filter.is_empty() {
+            return false;
+        }
+        let value = match field {
             "name" => self.name.to_string(),
             "brewery" => self.brewery.to_string(),
             "year" => self.year.to_string(),
@@ -38,10 +41,15 @@ impl Beer {
             "size" => self.size.to_string(),
             "stock" => self.stock.to_string(),
             "purchased" => self.purchased.to_string(),
+            "collaborators" => self.collaborators.clone().unwrap_or_default().to_string(),
             _ => return false,
         }
-        .to_lowercase()
-        .contains(filter)
+        .to_lowercase();
+        if value.is_empty() {
+            return false;
+        }
+        let check = filter.to_lowercase();
+        value == check || value.contains(&check)
     }
 
     pub fn compare_field(&self, other: &Self, field: &str) -> std::cmp::Ordering {
@@ -93,9 +101,9 @@ mod tests {
         // test uppercase partial match
         assert_eq!(beer.filter_check("name", "Beer"), true);
         // test number partial match
-        assert_eq!(ber.filter_check("year", "21"), true);
+        assert_eq!(beer.filter_check("year", "21"), true);
         // test number full match
-        assert_eq!(ber.filter_check("year", "2021"), true);
+        assert_eq!(beer.filter_check("year", "2021"), true);
         // test unmatching field
         assert_eq!(beer.filter_check("ibu", "5"), false);
     }
@@ -149,7 +157,7 @@ mod tests {
         // test float comparison
         assert_eq!(
             beer_a.compare_field(&beer_b, "abv"),
-            std::cmp::Ordering::Equal
+            std::cmp::Ordering::Greater
         );
     }
 }

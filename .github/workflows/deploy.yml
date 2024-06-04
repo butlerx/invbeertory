@@ -16,7 +16,7 @@ jobs:
           override: true
       - run: rustup target add wasm32-unknown-unknown
       - name: Install trunk
-        run: cargo install trunk wasm-bindgen-cli
+        uses: jetli/trunk-action@v0.5.0
       - name: Build Yew project
         run: trunk build --release
       - name: Publish to Cloudflare Pages
