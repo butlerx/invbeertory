@@ -1,0 +1,26 @@
+[package]
+name = "invbeertory"
+version.workspace = true
+edition.workspace = true
+description.workspace = true
+readme.workspace = true
+authors.workspace = true
+repository.workspace = true
+license.workspace = true
+
+[dependencies]
+chrono = "0.4"
+csv = "1.1"
+getrandom = { version = "0.2", features = ["js"] }
+implicit-clone = { version ="0.4", features = ["serde", "map"] }
+js-sys = "0.3"
+rand = "0.8"
+serde.workspace = true
+serde-wasm-bindgen = "0.6"
+serde_json.workspace = true
+serde_repr.workspace = true
+wasm-bindgen = "0.2"
+wasm-bindgen-futures = "0.4"
+web-sys = { version = "0.3", features = ["HtmlDivElement", "SvgsvgElement"] }
+yew = { version="0.20", features=["csr"] }
+yew-router = "0.17"

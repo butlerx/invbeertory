@@ -18,6 +18,7 @@ jobs:
       - name: Install trunk
         uses: jetli/trunk-action@v0.5.0
       - name: Build Yew project
+        working-directory: crates/dashboard
         run: trunk build --release
       - name: Publish to Cloudflare Pages
         uses: cloudflare/pages-action@v1
@@ -25,4 +26,4 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: edfb77a2962ab577b66fb2e9de9b66d7
           projectName: invbeertory
-          directory: dist
+          directory: crates/dashboard/dist
