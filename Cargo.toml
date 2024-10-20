@@ -1,4 +1,5 @@
-[workspace.package]
+[package]
+name = "invbeertory"
 version = "0.1.0"
 edition = "2021"
 description = "Simple beer inventory display"
@@ -6,14 +7,31 @@ readme = "README.md"
 authors = ["Cian Butler <butlerx@notthe.cloud>"]
 repository = "https://github.com/butlerx/invbeertory"
 license = "MIT"
-keywords = ["beer", "yew", "rust", "web", "inventory", "display", "google-sheets", "wasm"]
+keywords = [
+  "beer",
+  "yew",
+  "rust",
+  "web",
+  "inventory",
+  "display",
+  "google-sheets",
+  "wasm",
+]
 categories = ["wasm", "web", "beer", "inventory", "display", "simple"]
 
-[workspace]
-members = ["crates/*"]
-resolver = "2"
-
-[workspace.dependencies]
+[dependencies]
+chrono = "0.4"
+csv = "1.1"
+getrandom = { version = "0.2", features = ["js"] }
+implicit-clone = { version = "0.4", features = ["serde", "map"] }
+js-sys = "0.3"
+rand = "0.8"
+serde-wasm-bindgen = "0.6"
 serde = { version = "1", features = ["derive"] }
 serde_repr = "0.1"
 serde_json = "1"
+wasm-bindgen = "0.2"
+wasm-bindgen-futures = "0.4"
+web-sys = { version = "0.3", features = ["HtmlDivElement", "SvgsvgElement"] }
+yew = { version = "0.20", features = ["csr"] }
+yew-router = "0.17"

@@ -5,9 +5,9 @@
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/butlerx/invbeertory/graphs/commit-activity)
 [![License: MIT](https://img.shields.io/github/license/butlerx/invbeertory)](https://github.com/butlerx/invbeertory/blob/master/LICENSE)
 
-> Simple beer inventory displaty
+> Simple beer inventory display
 
-### ✨ [Demo](beer.notthe.cloud)
+### ✨ [Demo, pints.me](https://pints.me)
 
 ## Install
 
@@ -28,28 +28,6 @@ Now that we have our basics covered, it's time to install the star of the show:
 ```bash
 cargo install trunk wasm-bindgen-cli
 ```
-
-## Usage
-
-Before building you will need to add credentials to the `.env` file or set them
-in the shell env. see `.env.sample` or below
-
-```sh
-PROJECT_ID="<YOUR_PROJECT_ID>"
-SPREADSHEET_ID="<YOUR_SPREADHEET_ID>"
-CLIENT_EMAIL="<SERVICE_ACCOUNT_EMAIL>"
-PRIVATE_KEY_ID="<YOUR_PRIVATE_KEY_ID>"
-PRIVATE_KEY="<YOUR_PRIVATE_KEY>"
-```
-
-You can get the `SPREADSHEET_ID` from the URL of your sheet,
-`https://docs.google.com/spreadsheets/d/<SPREADSHEET_ID>/edit#gid=12345`. You
-will have to create a service account which will provide you with the service
-account email id and a private key. To know more about creating service account
-you can visit [here](https://support.google.com/a/answer/7378726?hl=en) and read
-[this](https://www.twilio.com/blog/2017/03/google-spreadsheets-and-javascriptnode-js.html).
-After creating a service account share your sheet with edit permission with the
-given email id.
 
 ### Running
 

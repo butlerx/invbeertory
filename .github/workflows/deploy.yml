@@ -26,4 +26,4 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: edfb77a2962ab577b66fb2e9de9b66d7
           projectName: invbeertory
-          directory: crates/dashboard/dist
+          directory: ./dist

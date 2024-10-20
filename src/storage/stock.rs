@@ -14,10 +14,11 @@ struct Dataset {
     pub label: String,
 }
 
+static INVENTORY_STR: &str = include_str!("../../inventory.csv");
+
 impl Stock {
     pub fn load() -> Result<Self, csv::Error> {
-        let inventory_str = include_str!("inventory.csv");
-        let mut reader = ReaderBuilder::new().from_reader(inventory_str.as_bytes());
+        let mut reader = ReaderBuilder::new().from_reader(INVENTORY_STR.as_bytes());
         let beers: Result<IArray<Beer>, _> = reader.deserialize().collect();
         Ok(Self { beers: beers? })
     }
