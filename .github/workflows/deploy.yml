@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -18,7 +21,6 @@ jobs:
       - name: Install trunk
         uses: jetli/trunk-action@v0.5.0
       - name: Build Yew project
-        working-directory: crates/dashboard
         run: trunk build --release
       - name: Publish to Cloudflare Pages
         uses: cloudflare/pages-action@v1

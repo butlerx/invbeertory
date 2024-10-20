@@ -9,6 +9,9 @@
 
 ### ✨ [Demo, pints.me](https://pints.me)
 
+The site is a very simple inventory display written in yew. It is built from a
+csv and allows for searching a filtering with some predefined graphs.
+
 ## Install
 
 If you don't already have it installed, it's time to install Rust:
