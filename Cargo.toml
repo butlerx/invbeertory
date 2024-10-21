@@ -19,6 +19,12 @@ keywords = [
 ]
 categories = ["wasm", "web", "beer", "inventory", "display", "simple"]
 
+[[bin]]
+name = "client_hydrate"
+
+[[bin]]
+name = "server"
+
 [dependencies]
 chrono = "0.4"
 csv = "1.1"
@@ -31,7 +37,25 @@ serde = { version = "1", features = ["derive"] }
 serde_repr = "0.1"
 serde_json = "1"
 wasm-bindgen = "0.2"
-wasm-bindgen-futures = "0.4"
 web-sys = { version = "0.3", features = ["HtmlDivElement", "SvgsvgElement"] }
-yew = { version = "0.20", features = ["csr"] }
 yew-router = "0.17"
+yew = { version = "0.20", features = ["csr", "ssr", "hydration"] }
+log = "0.4"
+futures = { version = "0.3", features = ["std"], default-features = false }
+hyper-util = "0.1.9"
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+wasm-bindgen-futures = "0.4"
+wasm-logger = "0.2"
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+tokio = { version = "1.40.0", features = ["full"] }
+axum = "0.7"
+tower = { version = "0.5", features = ["make"] }
+tower-http = { version = "0.6", features = ["fs"] }
+env_logger = "0.11"
+clap = { version = "4", features = ["derive"] }
+hyper = { version = "1.4", features = ["server", "http1"] }
+
+[target.'cfg(unix)'.dependencies]
+jemallocator = "0.5"

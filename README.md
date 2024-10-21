@@ -35,11 +35,9 @@ cargo install trunk wasm-bindgen-cli
 ### Running
 
 ```bash
-trunk serve
+trunk build index.html
+cargo run --bin server -- --dir dist
 ```
-
-Rebuilds the app whenever a change is detected and runs a local server to host
-it.
 
 ### Release
 

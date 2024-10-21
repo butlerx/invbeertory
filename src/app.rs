@@ -1,9 +1,11 @@
 use crate::{
-    pages::{Beer, Graphs, History, Home, NotFound, Stock},
+    pages::{Beer, Graphs, History as HistoryPage, Home, NotFound, Stock},
     storage,
 };
 use implicit_clone::unsync::IString;
+use std::collections::HashMap;
 use yew::prelude::*;
+use yew_router::history::{AnyHistory, History, MemoryHistory};
 use yew_router::prelude::*;
 
 #[derive(Clone, Routable, PartialEq)]
@@ -32,7 +34,7 @@ fn switch(routes: Route) -> Html {
     match routes {
         Route::Home => html! {<Home stock={stock} />},
         Route::Stock => html! {<Stock stock={stock}/>},
-        Route::History => html! {<History stock={stock}/>},
+        Route::History => html! {<HistoryPage stock={stock}/>},
         Route::Graphs => html! { <Graphs stock={stock}/> },
         Route::Beer {
             brewery,
@@ -49,5 +51,25 @@ pub fn app() -> Html {
         <BrowserRouter>
             <Switch<Route> render={switch} />
         </BrowserRouter>
+    }
+}
+
+#[derive(Properties, PartialEq, Eq, Debug)]
+pub struct ServerAppProps {
+    pub url: AttrValue,
+    pub queries: HashMap<String, String>,
+}
+
+#[function_component(ServerApp)]
+pub fn server_app(props: &ServerAppProps) -> Html {
+    let history = AnyHistory::from(MemoryHistory::new());
+    history
+        .push_with_query(&*props.url, &props.queries)
+        .unwrap();
+
+    html! {
+        <Router history={history}>
+            <Switch<Route> render={switch} />
+        </Router>
     }
 }
