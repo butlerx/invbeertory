@@ -1,0 +1,11 @@
+trunk-version = "^0.21.1"
+
+[build]
+filehash = false
+frozen = true
+locked = true
+
+[[hooks]]
+stage = "post_build"                             # When to run hook, must be one of "pre_build", "build", "post_build"
+command = "cargo"
+command_arguments = ["build", "--bin", "server"]

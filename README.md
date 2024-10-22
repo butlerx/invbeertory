@@ -35,7 +35,7 @@ cargo install trunk wasm-bindgen-cli
 ### Running
 
 ```bash
-trunk build index.html
+trunk build
 cargo run --bin server -- --dir dist
 ```
 
@@ -43,6 +43,8 @@ cargo run --bin server -- --dir dist
 
 ```bash
 trunk build --release
+cargo build --bin server --release
+./target/release/server --dir dist
 ```
 
 ## Author

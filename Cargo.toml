@@ -22,10 +22,35 @@ categories = ["wasm", "web", "beer", "inventory", "display", "simple"]
 [[bin]]
 name = "client_hydrate"
 
-[[bin]]
-name = "server"
+[package.metadata.release]
+release = false
+
+# https://github.com/rustwasm/wasm-pack/issues/1247
+[package.metadata.wasm-pack.profile.release]
+wasm-opt = false
+
+[lib]
+crate-type = ["cdylib"]
 
 [dependencies]
+worker = { version = "0.4.2", features = ['http', 'axum'] }
+worker-macros = { version = "0.4.2", features = ['http'] }
+axum = { version = "0.7", default-features = false, features = [
+  "form",
+  "http1",
+  "json",
+  "matched-path",
+  "original-uri",
+  "query",
+  "tower-log",
+  "tracing",
+] }
+tower-service = "0.3.2"
+console_error_panic_hook = { version = "0.1.1" }
+
+wasm-bindgen-futures = "0.4"
+wasm-logger = "0.2"
+
 chrono = "0.4"
 csv = "1.1"
 getrandom = { version = "0.2", features = ["js"] }
@@ -43,19 +68,3 @@ yew = { version = "0.20", features = ["csr", "ssr", "hydration"] }
 log = "0.4"
 futures = { version = "0.3", features = ["std"], default-features = false }
 hyper-util = "0.1.9"
-
-[target.'cfg(target_arch = "wasm32")'.dependencies]
-wasm-bindgen-futures = "0.4"
-wasm-logger = "0.2"
-
-[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
-tokio = { version = "1.40.0", features = ["full"] }
-axum = "0.7"
-tower = { version = "0.5", features = ["make"] }
-tower-http = { version = "0.6", features = ["fs"] }
-env_logger = "0.11"
-clap = { version = "4", features = ["derive"] }
-hyper = { version = "1.4", features = ["server", "http1"] }
-
-[target.'cfg(unix)'.dependencies]
-jemallocator = "0.5"
