@@ -22,7 +22,7 @@ categories  = ["beer", "display", "inventory", "simple", "wasm", "web"]
 [dependencies]
 chrono               = "0.4"
 csv                  = "1.1"
-getrandom            = { version = "0.2", features = ["js"] }
+getrandom            = { version = "0.4", features = ["wasm_js"] }
 implicit-clone       = { version = "0.4", features = ["map", "serde"] }
 js-sys               = "0.3"
 rand                 = "0.10"
