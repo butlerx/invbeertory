@@ -31,7 +31,10 @@ jobs:
       - name: Build Yew project
         run: trunk build --release
 
+      # Pull requests (including dependabot, which gets no secrets) only build.
+      # Deploy runs solely for pushes to main.
       - name: Publish to Cloudflare Pages
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: cloudflare/wrangler-action@953926a2e2182532811c01a25e53647d93bf07c0 # v4.1.3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
