@@ -93,19 +93,19 @@ mod tests {
             brewed_with: None,
         };
         // test lowercase partial match
-        assert_eq!(beer.filter_check("name", "test"), true);
+        assert!(beer.filter_check("name", "test"));
         // test lowercase full match
-        assert_eq!(beer.filter_check("name", "test beer"), true);
+        assert!(beer.filter_check("name", "test beer"));
         // test uppercase full match
-        assert_eq!(beer.filter_check("name", "Test Beer"), true);
+        assert!(beer.filter_check("name", "Test Beer"));
         // test uppercase partial match
-        assert_eq!(beer.filter_check("name", "Beer"), true);
+        assert!(beer.filter_check("name", "Beer"));
         // test number partial match
-        assert_eq!(beer.filter_check("year", "21"), true);
+        assert!(beer.filter_check("year", "21"));
         // test number full match
-        assert_eq!(beer.filter_check("year", "2021"), true);
+        assert!(beer.filter_check("year", "2021"));
         // test unmatching field
-        assert_eq!(beer.filter_check("ibu", "5"), false);
+        assert!(!beer.filter_check("ibu", "5"));
     }
 
     #[test]

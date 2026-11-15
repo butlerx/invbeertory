@@ -9,9 +9,7 @@ pub struct Props {
 
 #[function_component(Deck)]
 pub fn deck(props: &Props) -> Html {
-    html! {
-        <div class="deck">{ props.children.clone() }</div>
-    }
+    html! { <div class="deck">{ props.children.clone() }</div> }
 }
 
 #[derive(Properties, PartialEq)]
@@ -43,22 +41,20 @@ pub fn card(props: &CardProps) -> Html {
                         <span class="val">{ v }</span>
                         <br/>
                     </>
-                })}
+                }) }
             </div>
         }
     };
 
     let title_html = match title {
-        Some(title) if !title.is_empty() => html! {
-            <h1 class="headline">{ title }</h1>
-        },
+        Some(title) if !title.is_empty() => html! { <h1 class="headline">{ title }</h1> },
         _ => html! {},
     };
 
     html! {
         <div class="single">
-            {meta_html}
-            {title_html}
+            { meta_html }
+            { title_html }
             <section class="body">{ children.clone() }</section>
         </div>
     }

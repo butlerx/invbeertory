@@ -55,7 +55,7 @@ pub fn search(props: &Props) -> Html {
                             name: beer.name.to_lowercase().replace(' ', "_").into(),
                         }} classes={classes!("path")}>{beer}</Link<Route>>
                     </li>
-                })}
+                }) }
             </ul>
         </div>
     }
