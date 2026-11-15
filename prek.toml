@@ -20,7 +20,8 @@ hooks = [{ id = "actionlint" }]
 [[repos]]
 repo  = "https://github.com/google/yamlfmt"
 rev   = "21ca5323a9c87ee37a434e0ca908efc0a89daa07"
-hooks = [{ id = "yamlfmt" }]
+# .mise/ holds mise-generated lock sidecars (also in .prettierignore); not hand-formatted YAML
+hooks = [{ id = "yamlfmt", exclude = "^\\.mise/" }]
 
 [[repos]]
 repo  = "https://github.com/zizmorcore/zizmor-pre-commit"
