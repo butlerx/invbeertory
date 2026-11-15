@@ -32,6 +32,12 @@ version = "0.6.3"
 backend = "cargo:yew-fmt"
 specifiers = ["latest"]
 
+[[tools."npm:wrangler"]]
+version = "4.162.0"
+aube = { path = ".mise/locks/npm-wrangler/4.162.0", digest = "sha256:0e7a4abf83d7363caab1f425cfa1586b7c9e2d39a874ebc67f6de3d1e38f6e70" }
+backend = "npm:wrangler"
+specifiers = ["latest"]
+
 [[tools.prek]]
 version = "0.5.10"
 backend = "aqua:j178/prek"

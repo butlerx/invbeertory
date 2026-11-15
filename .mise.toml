@@ -10,6 +10,7 @@ zizmor                   = "latest"
 "cargo:trunk"            = "latest"
 "cargo:wasm-bindgen-cli" = "latest"
 "cargo:yew-fmt"          = "latest"
+"npm:wrangler"           = "latest"
 
 [settings]
 experimental   = true
@@ -87,3 +88,13 @@ run         = "prek install --install-hooks --hook-type pre-commit --hook-type c
 [tasks.clean]
 description = "Clean build artifacts"
 run         = "rm -rf target dist"
+
+[tasks.preview]
+description = "Serve the built site with the Cloudflare Pages runtime"
+depends     = ["build"]
+run         = "wrangler pages dev dist"
+
+[tasks.deploy]
+description = "Deploy the built site to Cloudflare Pages (CI does this on push to main)"
+depends     = ["build"]
+run         = "wrangler pages deploy dist --project-name=invbeertory"
