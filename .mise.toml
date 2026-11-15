@@ -1,7 +1,7 @@
 [tools]
 rust                     = { version = "stable", profile = "default", components = "rust-analyzer", targets = "wasm32-unknown-unknown" }
 prek                     = "latest"
-tombi                    = "latest"
+tombi                    = "1.2.5"
 shellcheck               = "latest"                                                                                                       # used by actionlint
 zizmor                   = "latest"
 "cargo:cargo-binstall"   = "latest"
