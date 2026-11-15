@@ -31,7 +31,11 @@ pub fn search(props: &Props) -> Html {
             let query_value = input.value();
             query.set(IString::from(query_value.clone()));
 
-            let search_results = stock.search(&query_value).iter().collect::<IArray<_>>();
+            let search_results = stock
+                .search(&query_value)
+                .iter()
+                .cloned()
+                .collect::<IArray<_>>();
             results.set(search_results);
         })
     };

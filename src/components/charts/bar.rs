@@ -69,7 +69,7 @@ impl Component for Bar {
             data: Data {
                 labels: data.iter().map(|(label, _)| label.clone()).collect(),
                 datasets: vec![Dataset {
-                    data: data.iter().map(|(_, value)| value).collect(),
+                    data: data.iter().map(|(_, value)| *value).collect(),
                 }]
                 .into(),
             },

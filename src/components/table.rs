@@ -49,6 +49,7 @@ pub fn data_grid(props: &Props) -> Html {
                         filter.is_empty() || beer.filter_check(header, filter)
                     })
                 })
+                .cloned()
                 .collect::<IArray<_>>();
 
             filtered_data.set(new_filtered_data);
@@ -119,7 +120,7 @@ pub fn data_grid(props: &Props) -> Html {
             html! {
                 <div class={classes!("grid-header-cell")}>
                     <div class={header_classes} onclick={on_click}>
-                        { formatting::capitalise(header) }
+                        { formatting::capitalise(header).to_string() }
                     </div>
                     <input
                         type={input_type}
@@ -145,16 +146,16 @@ pub fn data_grid(props: &Props) -> Html {
                         name: beer.name.to_lowercase().replace(' ', "_").into(),
                     }}
                     >
-                        { beer.name.clone() }
+                        { beer.name.to_string() }
                     </Link<Route>>
                 </div>
                 <div class={classes!("grid-cell", "left")}>
-                    { formatting::brewer::format(&beer) }
+                    { formatting::brewer::format(beer).to_string() }
                 </div>
                 <div class={classes!("grid-cell", "center")}>{ beer.year }</div>
                 <div class={classes!("grid-cell", "right")}>{ format!("{:.1}%", beer.abv) }</div>
                 <div class={classes!("grid-cell", "left")}>
-                    { formatting::style::format(&beer) }
+                    { formatting::style::format(beer).to_string() }
                 </div>
                 <div class={classes!("grid-cell", "center")}>{ format!("{} ml", beer.size) }</div>
                 <div class={classes!("grid-cell", "right")}>{ beer.stock }</div>
