@@ -42,8 +42,8 @@ pub fn beer(props: &Props) -> Html {
 
     html! {
         <Layout title={name.clone()}>
-            <Deck> {
-                match stock.clone().find_beer(brewery, *year, name) {
+            <Deck>
+                { match stock.clone().find_beer(brewery, *year, name) {
                     Some(beer) => html! {
                         <Card title={title::format(&beer)} meta={beer_meta(&beer)}>{
                             format!(
@@ -53,8 +53,8 @@ pub fn beer(props: &Props) -> Html {
                         }</Card>
                     },
                     None => html! {<Card><p>{"Beer not found"}</p></Card>},
-                }
-            } </Deck>
+                } }
+            </Deck>
         </Layout>
     }
 }

@@ -1,3 +1,6 @@
+// TODO: burn down. Chart data types here are not all constructed yet.
+#![allow(dead_code)]
+
 use super::{bindings, colours};
 use implicit_clone::{
     unsync::{IArray, IString},
@@ -46,9 +49,9 @@ impl Component for Line {
 
     fn view(&self, _ctx: &Context<Self>) -> Html {
         html! {
-        <div style="width: 100%; height: auto;">
-            <svg ref={self.svg_ref.clone()} />
-        </div>
+            <div style="width: 100%; height: auto">
+                <svg ref={self.svg_ref.clone()} />
+            </div>
         }
     }
 

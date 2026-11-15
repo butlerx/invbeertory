@@ -26,11 +26,11 @@ fn get_month(month_index: u32) -> &'static str {
     }
 }
 
-fn update_title(title: &Option<IString>) {
+fn update_title(title: Option<&IString>) {
     if let Some(window) = window() {
         if let Some(document) = window.document() {
             let site_title = formatting::capitalise(TITLE);
-            let title = if let Some(title) = &title {
+            let title = if let Some(title) = title {
                 IString::from(format!("{title} | {site_title}"))
             } else {
                 site_title
@@ -40,7 +40,7 @@ fn update_title(title: &Option<IString>) {
     }
 }
 
-fn set_meta_tags(title: &Option<IString>) {
+fn set_meta_tags(title: Option<&IString>) {
     let window = window().expect("no global `window` exists");
     let document = window.document().expect("should have a document on window");
     let head = document.head().expect("should have a head in document");
@@ -53,10 +53,10 @@ fn set_meta_tags(title: &Option<IString>) {
 
     let meta_tags = [
         ("name", "description", DESCRIPTION),
-        ("property", "og:title", &title),
+        ("property", "og:title", title),
         ("property", "og:description", DESCRIPTION),
         ("name", "twitter:creator", AUTHORS),
-        ("name", "twitter:title", &title),
+        ("name", "twitter:title", title),
         ("name", "twitter:description", DESCRIPTION),
     ];
 
@@ -78,8 +78,8 @@ pub struct Props {
 pub fn layout(props: &Props) -> Html {
     let current_date = chrono::Utc::now();
     let Props { title, children } = props;
-    update_title(title);
-    set_meta_tags(title);
+    update_title(title.as_ref());
+    set_meta_tags(title.as_ref());
     html! {
         <>
             <Header />
@@ -87,7 +87,7 @@ pub fn layout(props: &Props) -> Html {
             <footer>
                 <div class={classes!("container")}>
                     <span>
-                        { format!( "© {}, {} {} - ", get_month(current_date.month0()), current_date.year(), AUTHORS)}
+                        { format!( "© {}, {} {} - ", get_month(current_date.month0()), current_date.year(), AUTHORS) }
                         <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
                             { " CC BY 4.0" }
                         </a>

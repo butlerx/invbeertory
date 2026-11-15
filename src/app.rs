@@ -30,16 +30,16 @@ pub enum Route {
 fn switch(routes: Route) -> Html {
     let stock = storage::Stock::load().expect("Failed to parse CSV");
     match routes {
-        Route::Home => html! {<Home stock={stock} />},
-        Route::Stock => html! {<Stock stock={stock}/>},
-        Route::History => html! {<History stock={stock}/>},
-        Route::Graphs => html! { <Graphs stock={stock}/> },
+        Route::Home => html! { <Home stock={stock} /> },
+        Route::Stock => html! { <Stock stock={stock} /> },
+        Route::History => html! { <History stock={stock} /> },
+        Route::Graphs => html! { <Graphs stock={stock} /> },
         Route::Beer {
             brewery,
             year,
             name,
-        } => html! {<Beer stock={stock} brewery={brewery} year={year} name={name} />},
-        Route::NotFound => html! {<NotFound />},
+        } => html! { <Beer stock={stock} brewery={brewery} year={year} name={name} /> },
+        Route::NotFound => html! { <NotFound /> },
     }
 }
 

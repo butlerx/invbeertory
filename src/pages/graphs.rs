@@ -18,29 +18,18 @@ pub fn graphs(props: &Props) -> Html {
     html! {
         <Layout title={title}>
             <Deck>
-              <Card>
-                <charts::Pie
-                    title="Beers by Brewery"
-                    data={stock.purchases_by_brewery()} />
-              </Card>
-              <Card>
-                <charts::Bar
-                    title="ABV in stock"
-                    data={stock.stock_by_abv()}
-                />
-              </Card>
-              <Card>
-                <charts::Pie
-                    title="Beers by Style"
-                    data={stock.purchases_by_style()}
-                />
-              </Card>
-              <Card>
-                <charts::StackedBar
-                    title="Brewery by Style"
-                    data={stock.brewery_by_style()}
-                />
-              </Card>
+                <Card>
+                    <charts::Pie title="Beers by Brewery" data={stock.purchases_by_brewery()} />
+                </Card>
+                <Card>
+                    <charts::Bar title="ABV in stock" data={stock.stock_by_abv()} />
+                </Card>
+                <Card>
+                    <charts::Pie title="Beers by Style" data={stock.purchases_by_style()} />
+                </Card>
+                <Card>
+                    <charts::StackedBar title="Brewery by Style" data={stock.brewery_by_style()} />
+                </Card>
             </Deck>
         </Layout>
     }

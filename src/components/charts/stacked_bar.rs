@@ -45,9 +45,9 @@ impl Component for StackedBar {
 
     fn view(&self, _ctx: &Context<Self>) -> Html {
         html! {
-        <div style="width: 100%; height: auto;">
-            <svg ref={self.svg_ref.clone()} />
-        </div>
+            <div style="width: 100%; height: auto">
+                <svg ref={self.svg_ref.clone()} />
+            </div>
         }
     }
 

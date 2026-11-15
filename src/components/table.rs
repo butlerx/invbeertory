@@ -47,7 +47,7 @@ pub fn data_grid(props: &Props) -> Html {
                     .filter(|beer| {
                         HEADERS.iter().enumerate().all(|(index, &(header, _))| {
                             let filter = &lower_filters[index];
-                            filter.is_empty() || beer.filter_check(header, &filter)
+                            filter.is_empty() || beer.filter_check(header, filter)
                         })
                     })
                     .collect::<IArray<_>>();
@@ -121,10 +121,9 @@ pub fn data_grid(props: &Props) -> Html {
 
             html! {
                 <div class={classes!("grid-header-cell")}>
-                    <div
-                        class={header_classes}
-                        onclick={on_click}
-                    >{formatting::capitalise(header)}</div>
+                    <div class={header_classes} onclick={on_click}>
+                        { formatting::capitalise(header) }
+                    </div>
                     <input
                         type={input_type}
                         name={format!("filter-{header}")}
@@ -142,19 +141,27 @@ pub fn data_grid(props: &Props) -> Html {
         html! {
             <div class={classes!("grid-row")}>
                 <div class={classes!("grid-cell")}>
-                    <Link<Route> to={Route::Beer{
+                    <Link<Route>
+                        to={Route::Beer{
                         brewery: beer.brewery.to_lowercase().replace(' ', "_").into(),
                         year: beer.year,
                         name: beer.name.to_lowercase().replace(' ', "_").into(),
-                    }}>{beer.name.clone()}</Link<Route>>
+                    }}
+                    >
+                        { beer.name.clone() }
+                    </Link<Route>>
                 </div>
-                <div class={classes!("grid-cell", "left")}>{formatting::brewer::format(&beer)}</div>
-                <div class={classes!("grid-cell", "center")}>{beer.year}</div>
-                <div class={classes!("grid-cell", "right")}>{format!("{:.1}%", beer.abv)}</div>
-                <div class={classes!("grid-cell", "left")}>{formatting::style::format(&beer)}</div>
-                <div class={classes!("grid-cell", "center")}>{format!("{} ml", beer.size)}</div>
-                <div class={classes!("grid-cell", "right")}>{beer.stock}</div>
-                <div class={classes!("grid-cell", "right")}>{beer.purchased}</div>
+                <div class={classes!("grid-cell", "left")}>
+                    { formatting::brewer::format(&beer) }
+                </div>
+                <div class={classes!("grid-cell", "center")}>{ beer.year }</div>
+                <div class={classes!("grid-cell", "right")}>{ format!("{:.1}%", beer.abv) }</div>
+                <div class={classes!("grid-cell", "left")}>
+                    { formatting::style::format(&beer) }
+                </div>
+                <div class={classes!("grid-cell", "center")}>{ format!("{} ml", beer.size) }</div>
+                <div class={classes!("grid-cell", "right")}>{ beer.stock }</div>
+                <div class={classes!("grid-cell", "right")}>{ beer.purchased }</div>
             </div>
         }
     }).collect::<Html>();

@@ -54,7 +54,7 @@ impl Stock {
             });
 
         let mut res_vec = res.into_iter().collect::<Vec<(IString, i64)>>();
-        res_vec.sort_by(|a, b| b.1.cmp(&a.1));
+        res_vec.sort_by_key(|a| std::cmp::Reverse(a.1));
 
         let mut largest: HashMap<IString, i64> = HashMap::new();
         let mut other_sum = 0;
@@ -105,7 +105,7 @@ impl Stock {
             });
 
         let mut sorted_breweries: Vec<_> = brewery_counts.into_iter().collect();
-        sorted_breweries.sort_by(|a, b| b.1.cmp(&a.1));
+        sorted_breweries.sort_by_key(|a| std::cmp::Reverse(a.1));
 
         // Select most popular breweries
         let top_breweries: Vec<String> = sorted_breweries

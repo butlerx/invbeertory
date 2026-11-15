@@ -12,7 +12,9 @@ const DESCRIPTION: &str = env!("CARGO_PKG_DESCRIPTION");
 fn base(unit: usize) -> html::Classes {
     if unit > 9 {
         // convert 10 to a, 11 to b, etc
-        let unit_char = (unit - 8 + b'a' as usize) as u8 as char;
+        let unit_char = char::from(
+            u8::try_from(unit - 8 + usize::from(b'a')).expect("base digit out of range"),
+        );
         return classes!(format!("base0{unit_char}"));
     }
 
@@ -29,15 +31,15 @@ pub fn home(props: &Props) -> Html {
     html! {
         <Layout>
             <h1 class={classes!("site-title")}>
-              <span class={base(5)}>{"["}</span>
+                <span class={base(5)}>{ "[" }</span>
                 { for TITLE.chars().enumerate().map(|(i, letter)| {
                     html! { <span class={base(i)}>{letter}</span> }
-                })}
-              <span class={base(5)}>{"]"}</span>
-              <span class={base(5)}>{"#_"}</span>
+                }) }
+                <span class={base(5)}>{ "]" }</span>
+                <span class={base(5)}>{ "#_" }</span>
             </h1>
             <div class={classes!("herologo")} />
-            <div style="text-align: center">{DESCRIPTION}</div>
+            <div style="text-align: center">{ DESCRIPTION }</div>
             <Search stock={props.stock.clone()} />
         </Layout>
     }

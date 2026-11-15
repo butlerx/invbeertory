@@ -1,4 +1,6 @@
 pub mod bar;
+// wasm-bindgen extern blocks are unsafe by construction; the lint is denied crate-wide.
+#[allow(unsafe_code)]
 mod bindings;
 mod colours;
 pub mod line;
