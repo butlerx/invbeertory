@@ -24,6 +24,7 @@ impl ImplicitClone for Dataset {}
 #[derive(Properties, PartialEq)]
 pub struct Props {
     pub data: HashMap<IString, i64>,
+    #[prop_or_default]
     pub title: Option<String>,
 }
 

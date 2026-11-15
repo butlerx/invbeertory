@@ -36,9 +36,9 @@ pub fn card(props: &CardProps) -> Html {
             <div class="metadata">
                 { for meta.iter().map(|(k, v)| html! {
                     <>
-                        <span class="key">{formatting::capitalise(k)}</span>
+                        <span class="key">{formatting::capitalise(k).to_string()}</span>
                         { ": " }
-                        <span class="val">{ v }</span>
+                        <span class="val">{ v.to_string() }</span>
                         <br/>
                     </>
                 }) }
@@ -47,7 +47,9 @@ pub fn card(props: &CardProps) -> Html {
     };
 
     let title_html = match title {
-        Some(title) if !title.is_empty() => html! { <h1 class="headline">{ title }</h1> },
+        Some(title) if !title.is_empty() => {
+            html! { <h1 class="headline">{ title.to_string() }</h1> }
+        }
         _ => html! {},
     };
 
