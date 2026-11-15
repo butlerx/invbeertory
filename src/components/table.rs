@@ -2,7 +2,7 @@ use crate::{app::Route, formatting, storage::Beer};
 use implicit_clone::unsync::{IArray, IString};
 use web_sys::HtmlInputElement;
 use yew::{
-    classes, function_component, html, use_effect_with_deps, use_state, Callback, Html, InputEvent,
+    classes, function_component, html, use_effect_with, use_state, Callback, Html, InputEvent,
     Properties, TargetCast,
 };
 use yew_router::prelude::Link;
@@ -35,28 +35,25 @@ pub fn data_grid(props: &Props) -> Html {
         let data = data.clone();
         let filter_inputs = filter_inputs.clone();
         let filtered_data = filtered_data.clone();
-        use_effect_with_deps(
-            move |filter_inputs| {
-                let lower_filters = filter_inputs
-                    .iter()
-                    .map(|f| f.to_lowercase())
-                    .collect::<Vec<_>>();
+        use_effect_with(filter_inputs.clone(), move |filter_inputs| {
+            let lower_filters = filter_inputs
+                .iter()
+                .map(|f| f.to_lowercase())
+                .collect::<Vec<_>>();
 
-                let new_filtered_data = data
-                    .iter()
-                    .filter(|beer| {
-                        HEADERS.iter().enumerate().all(|(index, &(header, _))| {
-                            let filter = &lower_filters[index];
-                            filter.is_empty() || beer.filter_check(header, filter)
-                        })
+            let new_filtered_data = data
+                .iter()
+                .filter(|beer| {
+                    HEADERS.iter().enumerate().all(|(index, &(header, _))| {
+                        let filter = &lower_filters[index];
+                        filter.is_empty() || beer.filter_check(header, filter)
                     })
-                    .collect::<IArray<_>>();
+                })
+                .collect::<IArray<_>>();
 
-                filtered_data.set(new_filtered_data);
-                || ()
-            },
-            filter_inputs,
-        );
+            filtered_data.set(new_filtered_data);
+            || ()
+        });
     }
 
     let on_sort = {

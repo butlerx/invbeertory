@@ -71,6 +71,7 @@ fn set_meta_tags(title: Option<&IString>) {
 #[derive(Properties, PartialEq)]
 pub struct Props {
     pub children: Children,
+    #[prop_or_default]
     pub title: Option<IString>,
 }
 
