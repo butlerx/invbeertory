@@ -32,10 +32,7 @@ serde_repr           = "0.1"
 serde-wasm-bindgen   = "0.6"
 wasm-bindgen         = "0.2"
 wasm-bindgen-futures = "0.4"
-web-sys              = {
-  version  = "0.3",
-  features = ["HtmlDivElement", "SvgsvgElement"]
-}
+web-sys              = { version = "0.3", features = ["HtmlDivElement", "SvgsvgElement"] }
 yew                  = { version = "0.20", features = ["csr"] }
 yew-router           = "0.17"
 

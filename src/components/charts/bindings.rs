@@ -7,17 +7,23 @@ use web_sys::Element;
 #[wasm_bindgen(module = "/src/components/charts/xkcd.js")]
 extern "C" {
     #[wasm_bindgen(js_name = "bar")]
+    #[allow(
+        unsafe_code,
+        reason = "wasm-bindgen FFI declarations are unsafe functions"
+    )]
     pub fn xkcd_bar(canvas: &Element, options: &JsValue);
-    #[wasm_bindgen(js_name = "line")]
-    pub fn xkcd_line(canvas: &Element, options: &JsValue);
     #[wasm_bindgen(js_name = "pie")]
+    #[allow(
+        unsafe_code,
+        reason = "wasm-bindgen FFI declarations are unsafe functions"
+    )]
     pub fn xkcd_pie(canvas: &Element, options: &JsValue);
-    #[wasm_bindgen(js_name = "radar")]
-    pub fn xkcd_radar(canvas: &Element, options: &JsValue);
     #[wasm_bindgen(js_name = "stackedBar")]
+    #[allow(
+        unsafe_code,
+        reason = "wasm-bindgen FFI declarations are unsafe functions"
+    )]
     pub fn xkcd_stacked_bar(canvas: &Element, options: &JsValue);
-    #[wasm_bindgen(js_name = "xy")]
-    pub fn xkcd_xy(canvas: &Element, options: &JsValue);
 
 }
 

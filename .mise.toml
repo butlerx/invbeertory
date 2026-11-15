@@ -1,7 +1,7 @@
 [tools]
 rust                     = { version = "stable", profile = "default", components = "rust-analyzer", targets = "wasm32-unknown-unknown" }
 prek                     = "latest"
-tombi                    = "1.2.5"
+tombi                    = "1.11.2"
 shellcheck               = "latest"                                                                                                       # used by actionlint
 zizmor                   = "latest"
 "cargo:cargo-binstall"   = "latest"
@@ -54,11 +54,7 @@ run         = "cargo clippy --fix --all-targets --all-features --allow-staged ${
 
 [tasks.format]
 description = "Format Rust (rustfmt + yew-fmt) and TOML"
-run         = [
-  "cargo fmt --all",
-  "find src -name '*.rs' -exec yew-fmt {} +",
-  "tombi format"
-]
+run         = ["cargo fmt --all", "find src -name '*.rs' -exec yew-fmt {} +", "tombi format"]
 alias       = "f"
 sources     = ["src/**/*.rs", "Cargo.toml"]
 

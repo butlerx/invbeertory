@@ -25,6 +25,9 @@ jobs:
         with:
           install_args: --verbose
       - uses: j178/prek-action@4e14d07f9231acabce116ccfca13b13dd9755ece # v3.0.0
+        env:
+          # zizmor's online audits need a token to look up action refs.
+          GH_TOKEN: ${{ github.token }}
 
   test:
     runs-on: ubuntu-latest
