@@ -50,6 +50,7 @@ pub fn data_grid(props: &Props) -> Html {
                             filter.is_empty() || beer.filter_check(header, filter)
                         })
                     })
+                    .cloned()
                     .collect::<IArray<_>>();
 
                 filtered_data.set(new_filtered_data);
@@ -152,13 +153,11 @@ pub fn data_grid(props: &Props) -> Html {
                     </Link<Route>>
                 </div>
                 <div class={classes!("grid-cell", "left")}>
-                    { formatting::brewer::format(&beer) }
+                    { formatting::brewer::format(beer) }
                 </div>
                 <div class={classes!("grid-cell", "center")}>{ beer.year }</div>
                 <div class={classes!("grid-cell", "right")}>{ format!("{:.1}%", beer.abv) }</div>
-                <div class={classes!("grid-cell", "left")}>
-                    { formatting::style::format(&beer) }
-                </div>
+                <div class={classes!("grid-cell", "left")}>{ formatting::style::format(beer) }</div>
                 <div class={classes!("grid-cell", "center")}>{ format!("{} ml", beer.size) }</div>
                 <div class={classes!("grid-cell", "right")}>{ beer.stock }</div>
                 <div class={classes!("grid-cell", "right")}>{ beer.purchased }</div>
