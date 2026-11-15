@@ -1,4 +1,5 @@
 name: Deploy Site to Cloudflare Pages
+
 on:
   push:
     branches:
@@ -6,24 +7,34 @@ on:
   pull_request:
     branches:
       - main
+
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
       - name: Set up Rust
-        uses: actions-rs/toolchain@v1
+        uses: dtolnay/rust-toolchain@6c977a6ca4077a0ceb28ffbe03f59d46e9ac8772 # v1
         with:
           toolchain: stable
-          profile: minimal
-          override: true
-      - run: rustup target add wasm32-unknown-unknown
+          targets: wasm32-unknown-unknown
+
       - name: Install trunk
-        uses: jetli/trunk-action@v0.5.0
+        uses: jetli/trunk-action@69821d4eec12c308c4b811e459e37556cf920057 # v0.5.0
+
       - name: Build Yew project
         run: trunk build --release
+
       - name: Publish to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
+        # Not SHA-pinned: the upstream repo could not be resolved to a commit when this
+        # was written. Pin it once a SHA is available.
+        uses: cloudflare/pages-action@v1 # zizmor: ignore[unpinned-uses]
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: edfb77a2962ab577b66fb2e9de9b66d7

@@ -1,0 +1,93 @@
+[tools]
+rust                     = { version = "stable", profile = "default", components = "rust-analyzer", targets = "wasm32-unknown-unknown" }
+prek                     = "latest"
+tombi                    = "latest"
+shellcheck               = "latest"                                                                                                       # used by actionlint
+zizmor                   = "latest"
+"cargo:cargo-binstall"   = "latest"
+"cargo:cargo-audit"      = "latest"
+"cargo:cargo-nextest"    = "latest"
+"cargo:trunk"            = "latest"
+"cargo:wasm-bindgen-cli" = "latest"
+"cargo:yew-fmt"          = "latest"
+
+[settings]
+experimental   = true
+lockfile       = true
+cargo.binstall = true
+
+[tasks.dev]
+description = "Start development server with hot-reload"
+run         = "trunk serve"
+alias       = "d"
+
+[tasks.build]
+description = "Build for production"
+run         = "trunk build --release"
+alias       = "b"
+sources     = [
+  "Cargo.lock",
+  "Cargo.toml",
+  "src/**/*.rs",
+  "styles/**/*.scss",
+  "index.html",
+  "index.scss",
+]
+outputs     = ["dist/"]
+
+[tasks.test]
+description = "Run tests"
+usage       = 'arg "[args]" var=#true help="Additional arguments passed to cargo nextest"'
+run         = "cargo nextest run --all-features ${usage_args:-}"
+alias       = "t"
+sources     = ["Cargo.lock", "Cargo.toml", "src/**/*.rs"]
+
+[tasks.lint]
+description = "Lint code with clippy"
+usage       = 'arg "[args]" var=#true help="Additional arguments passed to cargo clippy"'
+run         = "cargo clippy --all-targets --all-features ${usage_args:-} -- -D warnings"
+
+[tasks."lint:fix"]
+description = "Fix lint issues"
+usage       = 'arg "[args]" var=#true help="Additional arguments passed to cargo clippy"'
+run         = "cargo clippy --fix --all-targets --all-features --allow-staged ${usage_args:-} -- -D warnings"
+
+[tasks.format]
+description = "Format Rust (rustfmt + yew-fmt) and TOML"
+run         = [
+  "cargo fmt --all",
+  "find src -name '*.rs' -exec yew-fmt {} +",
+  "tombi format"
+]
+alias       = "f"
+sources     = ["src/**/*.rs", "Cargo.toml"]
+
+[tasks."format:check"]
+description = "Check Rust (rustfmt + yew-fmt) and TOML formatting"
+run         = [
+  "cargo fmt --all --check",
+  "find src -name '*.rs' -exec yew-fmt --check {} +",
+  "tombi format --check",
+]
+sources     = ["src/**/*.rs", "Cargo.toml"]
+
+[tasks.audit]
+description = "Audit dependencies for known vulnerabilities"
+run         = "cargo audit"
+
+[tasks.check]
+description = "Run all checks (format, lint, test, audit)"
+depends     = ["format:check", "lint", "test", "audit"]
+
+[tasks."check:actions"]
+description = "Lint GitHub Actions workflows"
+run         = "zizmor --no-progress .github"
+
+[tasks.hooks]
+description = "Install the git hooks that CI also runs"
+quiet       = true
+run         = "prek install --install-hooks --hook-type pre-commit --hook-type commit-msg"
+
+[tasks.clean]
+description = "Clean build artifacts"
+run         = "rm -rf target dist"
