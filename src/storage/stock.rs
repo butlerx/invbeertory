@@ -24,11 +24,14 @@ impl Stock {
     }
 
     pub fn find_beer(self, brewery: &str, year: i16, name: &str) -> Option<Beer> {
-        self.beers.iter().find(|beer| {
-            beer.brewery.to_lowercase().replace(' ', "_") == brewery
-                && beer.year == year
-                && beer.name.to_lowercase().replace(' ', "_") == name
-        })
+        self.beers
+            .iter()
+            .find(|beer| {
+                beer.brewery.to_lowercase().replace(' ', "_") == brewery
+                    && beer.year == year
+                    && beer.name.to_lowercase().replace(' ', "_") == name
+            })
+            .cloned()
     }
 
     pub fn purchases_by_style(&self) -> HashMap<IString, i64> {
@@ -47,7 +50,7 @@ impl Stock {
         let res = self
             .beers
             .iter()
-            .map(|beer| (field_b(&beer), field_a(&beer)))
+            .map(|beer| (field_b(beer), field_a(beer)))
             .fold(HashMap::new(), |mut acc, (key, value)| {
                 *acc.entry(key).or_insert(0) += value;
                 acc
@@ -175,6 +178,7 @@ impl Stock {
                     || beer.filter_check("abv", query)
                     || beer.filter_check("collaborators", query)
             })
+            .cloned()
             .collect()
     }
 
@@ -183,6 +187,7 @@ impl Stock {
             .beers
             .iter()
             .filter(|beer| beer.stock > 0)
+            .cloned()
             .collect::<Vec<_>>();
         IArray::from(beers)
     }

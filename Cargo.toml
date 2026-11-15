@@ -23,7 +23,7 @@ categories  = ["beer", "display", "inventory", "simple", "wasm", "web"]
 chrono               = "0.4"
 csv                  = "1.1"
 getrandom            = { version = "0.2", features = ["js"] }
-implicit-clone       = { version = "0.4", features = ["map", "serde"] }
+implicit-clone       = { version = "0.6", features = ["map", "serde"] }
 js-sys               = "0.3"
 rand                 = "0.8"
 serde                = { version = "1", features = ["derive"] }

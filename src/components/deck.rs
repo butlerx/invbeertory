@@ -36,7 +36,7 @@ pub fn card(props: &CardProps) -> Html {
             <div class="metadata">
                 { for meta.iter().map(|(k, v)| html! {
                     <>
-                        <span class="key">{formatting::capitalise(&k)}</span>
+                        <span class="key">{formatting::capitalise(k)}</span>
                         { ": " }
                         <span class="val">{ v }</span>
                         <br/>
