@@ -11,6 +11,13 @@ on:
 permissions:
   contents: read
 
+# A new push to a pull request cancels its older run (build and deploy), so a
+# stale build can never deploy over a newer preview. Pushes to main get a
+# per-commit group here and are serialised by the deploy job's own group.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.sha }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -31,12 +38,43 @@ jobs:
       - name: Build Yew project
         run: trunk build --release
 
-      # Pull requests (including dependabot, which gets no secrets) only build.
-      # Deploy runs solely for pushes to main.
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: dist
+          path: dist/
+          if-no-files-found: error
+
+  # Production deploys on pushes to main; every pull request that can read
+  # secrets gets a preview. Fork and dependabot PRs get no secrets, so they
+  # just build.
+  deploy:
+    needs: build
+    if: >-
+      (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
+      (github.event_name == 'pull_request' &&
+       github.event.pull_request.head.repo.full_name == github.repository &&
+       github.actor != 'dependabot[bot]')
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ github.event_name == 'push' && 'production' || 'preview' }}
+      url: ${{ steps.deploy.outputs.deployment-url }}
+    # Production deploys queue rather than cancel, so main always ends on the
+    # latest commit.
+    concurrency:
+      group: deploy-${{ github.event.pull_request.number || 'main' }}
+      cancel-in-progress: false
+    steps:
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: dist
+          path: dist/
       - name: Publish to Cloudflare Pages
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        id: deploy
         uses: cloudflare/wrangler-action@953926a2e2182532811c01a25e53647d93bf07c0 # v4.1.3
+        env:
+          # PR previews deploy under the PR's branch name; main is production.
+          PAGES_BRANCH: ${{ github.event_name == 'push' && 'main' || github.head_ref }}
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: edfb77a2962ab577b66fb2e9de9b66d7
-          command: pages deploy ./dist --project-name=invbeertory
+          command: pages deploy ./dist --project-name=invbeertory --branch="${{ env.PAGES_BRANCH }}"
