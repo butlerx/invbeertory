@@ -37,17 +37,16 @@ jobs:
           path: dist/
           if-no-files-found: error
 
-  # Production deploys on pushes to main. Pull requests get a preview
-  # deployment only when a maintainer opened them from a branch in this repo:
-  # fork PRs and dependabot get no secrets, so they just build.
+  # Production deploys on pushes to main; every pull request that can read
+  # secrets gets a preview. Fork and dependabot PRs get no secrets, so they
+  # just build.
   deploy:
     needs: build
     if: >-
       (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
       (github.event_name == 'pull_request' &&
        github.event.pull_request.head.repo.full_name == github.repository &&
-       github.actor != 'dependabot[bot]' &&
-       contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.pull_request.author_association))
+       github.actor != 'dependabot[bot]')
     runs-on: ubuntu-latest
     environment:
       name: ${{ github.event_name == 'push' && 'production' || 'preview' }}
