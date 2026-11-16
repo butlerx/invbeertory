@@ -15,13 +15,10 @@ pub fn default_background() -> IString {
 }
 
 pub fn generate_unique_colors(count: usize) -> IArray<IString> {
-    (0..count)
-        .map(|i| {
-            #[allow(clippy::cast_precision_loss)]
-            let hue = (i as f64 * GOLDEN_ANGLE) % 360.0;
-            let lightness = LIGHTNESS[i % LIGHTNESS.len()];
-            IString::from(format!("hsl({hue:.1}, 65%, {lightness}%)"))
-        })
+    let hues = std::iter::successors(Some(0.0_f64), |hue| Some((hue + GOLDEN_ANGLE) % 360.0));
+    hues.zip(LIGHTNESS.iter().cycle())
+        .take(count)
+        .map(|(hue, lightness)| IString::from(format!("hsl({hue:.1}, 65%, {lightness}%)")))
         .collect()
 }
 
