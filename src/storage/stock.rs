@@ -16,6 +16,12 @@ struct Dataset {
 
 static INVENTORY_STR: &str = include_str!("../../inventory.csv");
 
+/// Bars shown in the "Brewery by Style" chart before grouping into "Other".
+const TOP_BREWERIES: usize = 12;
+/// Stacked segments (and legend entries) before grouping into "Other".
+const TOP_STYLES: usize = 10;
+const OTHER: &str = "Other";
+
 impl Stock {
     pub fn load() -> Result<Self, csv::Error> {
         let mut reader = ReaderBuilder::new().from_reader(INVENTORY_STR.as_bytes());
@@ -101,70 +107,67 @@ impl Stock {
     }
 
     pub fn brewery_by_style(&self) -> stacked_bar::Data {
-        let brewery_counts: HashMap<String, i64> =
-            self.beers.iter().fold(HashMap::new(), |mut acc, beer| {
-                *acc.entry(beer.brewery.to_string()).or_insert(0) += beer.purchased;
-                acc
-            });
+        let breweries = self.top_keys(|beer| beer.brewery.to_string(), TOP_BREWERIES);
+        let styles = self.top_keys(|beer| beer.style.to_string(), TOP_STYLES);
+        let bucket = |keys: &[String], key: String| {
+            keys.iter()
+                .position(|k| *k == key)
+                .unwrap_or(keys.len() - 1)
+        };
 
-        let mut sorted_breweries: Vec<_> = brewery_counts.into_iter().collect();
-        sorted_breweries.sort_by_key(|a| std::cmp::Reverse(a.1));
-
-        // Select most popular breweries
-        let top_breweries: Vec<String> = sorted_breweries
+        let mut datasets: Vec<Dataset> = styles
             .iter()
-            .take(20)
-            .map(|(brewery, _)| brewery.clone())
+            .map(|style| Dataset {
+                label: style.clone(),
+                data: vec![0; breweries.len()],
+            })
             .collect();
 
-        let mut breweries: HashMap<String, HashMap<String, i64>> = HashMap::new();
-
         for beer in self.beers.iter() {
-            let brewery = if top_breweries.contains(&beer.brewery.to_string()) {
-                beer.brewery.to_string()
-            } else {
-                "Other".to_string()
-            };
-
-            let brewery_entry = breweries.entry(brewery).or_default();
-            *brewery_entry.entry(beer.style.to_string()).or_insert(0) += beer.purchased;
+            let brewery = bucket(&breweries, beer.brewery.to_string());
+            let style = bucket(&styles, beer.style.to_string());
+            datasets[style].data[brewery] += beer.purchased;
         }
 
-        let labels: Vec<String> = breweries.keys().cloned().collect();
-        let mut datasets: Vec<Dataset> = Vec::new();
+        let used_labels: Vec<usize> = (0..breweries.len())
+            .filter(|&i| datasets.iter().any(|d| d.data[i] > 0))
+            .collect();
+        datasets.retain(|d| d.data.iter().any(|&v| v > 0));
 
-        for (brewery, styles) in &breweries {
-            for (style, &count) in styles {
-                let mut found = false;
-                for dataset in &mut datasets {
-                    if dataset.label == *style {
-                        let index = labels.iter().position(|l| l == brewery).unwrap_or(0);
-                        dataset.data[index] = count;
-                        found = true;
-                        break;
-                    }
-                }
-                if !found {
-                    let mut data = vec![0; labels.len()];
-                    let index = labels.iter().position(|l| l == brewery).unwrap_or(0);
-                    data[index] = count;
-                    datasets.push(Dataset {
-                        label: style.clone(),
-                        data,
-                    });
-                }
-            }
-        }
         stacked_bar::Data {
-            labels: labels.into_iter().map(Into::into).collect(),
+            labels: used_labels
+                .iter()
+                .map(|&i| IString::from(breweries[i].clone()))
+                .collect(),
             datasets: datasets
                 .into_iter()
                 .map(|d| stacked_bar::Dataset {
                     label: IString::from(d.label),
-                    data: d.data.into(),
+                    data: used_labels.iter().map(|&i| d.data[i]).collect(),
                 })
                 .collect(),
         }
+    }
+
+    /// The `limit` most-purchased values of `key`, most popular first,
+    /// followed by an "Other" bucket for everything else.
+    fn top_keys<F>(&self, key: F, limit: usize) -> Vec<String>
+    where
+        F: Fn(&Beer) -> String,
+    {
+        let counts = self.beers.iter().fold(HashMap::new(), |mut acc, beer| {
+            *acc.entry(key(beer)).or_insert(0) += beer.purchased;
+            acc
+        });
+        let mut sorted: Vec<(String, i64)> = counts.into_iter().collect();
+        sorted.sort_by(|a, b| b.1.cmp(&a.1).then_with(|| a.0.cmp(&b.0)));
+        sorted
+            .into_iter()
+            .map(|(k, _)| k)
+            .filter(|k| k != OTHER)
+            .take(limit)
+            .chain(std::iter::once(OTHER.to_string()))
+            .collect()
     }
 
     pub fn search(&self, query: &str) -> IArray<Beer> {
@@ -190,5 +193,34 @@ impl Stock {
             .cloned()
             .collect::<Vec<_>>();
         IArray::from(beers)
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn brewery_by_style_is_capped() {
+        let stock = Stock::load().unwrap();
+        let data = stock.brewery_by_style();
+        assert!(data.labels.len() <= TOP_BREWERIES + 1);
+        assert!(data.datasets.len() <= TOP_STYLES + 1);
+        for dataset in data.datasets.iter() {
+            assert_eq!(dataset.data.len(), data.labels.len());
+        }
+    }
+
+    #[test]
+    fn brewery_by_style_keeps_every_purchase() {
+        let stock = Stock::load().unwrap();
+        let total: i64 = stock.beers.iter().map(|b| b.purchased).sum();
+        let charted: i64 = stock
+            .brewery_by_style()
+            .datasets
+            .iter()
+            .flat_map(|d| d.data.iter().collect::<Vec<_>>())
+            .sum();
+        assert_eq!(total, charted);
     }
 }
